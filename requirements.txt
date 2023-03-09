@@ -20,3 +20,7 @@ gym
 # for plotting trees and experiment figures
 networkx
 matplotlib
+
+# you may use any other download tool to download from Google Drive
+# For downloading datasets and weights
+gdown

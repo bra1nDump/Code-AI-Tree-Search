@@ -215,7 +215,7 @@ if __name__ == '__main__':
     parser.add_argument("--load-value", default=None, type=str, help="An optional value function for evaluating partial programs.")
     parser.add_argument("-t","--test-loc", default="../data_split/test.json", type=str, help="This file specifies the locations of the test set of the code dataset.")
     parser.add_argument("--width", default=3, type=int, help="The maximum number of children for any node.")
-    parser.add_argument("--horizon", default=1024, type=int, help="The maximum number of tokens to generate.")
+    parser.add_argument("--horizon", default=2048, type=int, help="The maximum number of tokens to generate.")
     parser.add_argument("--new-token-num", default=None, type=int, help="The number of new tokens to generate before calling the value function."
                                                                         "None means using the complete horizon (args.horizon).")
     parser.add_argument("--rollout", default=1, type=int, help="The maximum number of rollouts for PG-TD.")

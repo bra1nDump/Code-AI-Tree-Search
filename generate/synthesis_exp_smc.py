@@ -212,7 +212,7 @@ if __name__ == '__main__':
     parser.add_argument("--arch", default="gpt2", choices=transformers.GPT2_PRETRAINED_MODEL_ARCHIVE_LIST)
     parser.add_argument("-l", "--load", default="../models/1.5B", type=str)
     parser.add_argument("-t","--test-loc", default="../data_split/test.json", type=str)
-    parser.add_argument("--horizon", default=1024, type=int)
+    parser.add_argument("--horizon", default=2048, type=int)
     parser.add_argument("--num-beams", default=1, type=int)
     parser.add_argument("--pop-size", default=10, type=int, help="Population size.")
     parser.add_argument("-k", default=3, type=int) # suggested by reviewer, use consistent k
