@@ -1,9 +1,11 @@
+set -x
+
 source scripts/basis.sh
 start=$1
 end=$2
 prefix=$3
 save=$4
-extra=$5
+extra="$5 $6"
 
 for (( i = $start; i < $end; i++ ))
 do

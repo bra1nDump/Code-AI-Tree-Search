@@ -24,6 +24,7 @@ def generate_apps_prompt_for_codex(prompt_path):
     with open(prompt_path, "r") as f:
         data = f.read()
 
+    # They do give it a prompt.
     return f'"""\nPython 3\n{data}\n"""\n', None
 
 
@@ -165,5 +166,6 @@ Output
 """
 '''
 
+    # CHange this to use 3
     model = CodexModel(model="code-davinci-002")
     model.generate(input_str=test_input)

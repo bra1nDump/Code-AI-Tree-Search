@@ -54,7 +54,12 @@ def reindent_code(codestr):
     return ret.getvalue()
 
 def generate_apps_prompt(args, test_case_path, prompt_path, solutions_path, tokenizer, starter_path=None):
-    _input = "\nQUESTION:\n"
+    _input = ""
+    # _input = """
+    # Write a python program to solve the following problem.
+    # """
+    
+    _input += "\nQUESTION:\n"
     with open(prompt_path, "r") as f:
         data = f.readlines()
         data = "".join(data)
@@ -78,6 +83,7 @@ def generate_apps_prompt(args, test_case_path, prompt_path, solutions_path, toke
 
     _input += "\nANSWER:\n"
 
+    # Given another example how good will it perform
     if args.peeking > 0.0:
         # Need to do some peeking.
 
@@ -104,6 +110,8 @@ def generate_apps_prompt(args, test_case_path, prompt_path, solutions_path, toke
         _input += tokenizer.decode(rand_sol)
     else:
         sample_sol = None
+        
+    # print(_input)
 
     return _input, sample_sol
 
