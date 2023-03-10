@@ -1,0 +1,1 @@
+{"codes": ["def main():\n\tn, k, m = list(map(int, input().split()))\n\tmod = pow(10, m - 2, m)\n\tif k == 1:\n\t\tprint(n % mod)\n\t\treturn\n\tk = 1\n\tfor i in range(1, min(n, k) + 1):\n\t\tk = (k * 10 % mod) % m\n\tprint((main() - (k * pow(10, n - i, m) - 1)) % mod)\n\nmain()\n"], "rewards": [0.0], "train rewards": [0.0], "time": [4.126097202301025], "sample times": 1}

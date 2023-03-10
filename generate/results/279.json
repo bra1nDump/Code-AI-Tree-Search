@@ -1,0 +1,1 @@
+{"codes": ["v1, v2 = map(int, input().split())\nt = int(input())\nv1 = v1 * (t - 1) / 2\nv2 = v2 * (t - 1) / 2\nans = 0\ncur = v1\nfor i in range(t):\n\tif (cur + v2) >= v1:\n\t\tans += 1\n\t\tcur = v2\n\telse:\n\t\tcur += v1\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.758420467376709], "sample times": 1}

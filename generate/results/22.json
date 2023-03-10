@@ -1,0 +1,1 @@
+{"codes": ["s=input()\nif s==s[::-1]:\n\tprint(\"TAK\")\nelse:\n\tprint(\"NIE\")\n"], "rewards": [0.34177215189873417], "train rewards": [0.24358974358974358], "time": 1.493602991104126, "sample times": 1}

@@ -1,0 +1,1 @@
+{"codes": ["n, s = map(int, input().split())\n\np = 0\ni = 1\nwhile i < n:\n\tq = i\n\twhile q < n:\n\t\tq += 1\n\t\tt = 0\n\t\twhile t < 10:\n\t\t\tt += 1\n\t\t\tif q - t < s:\n\t\t\t\tbreak\n\t\telse:\n\t\t\tp += 1\n\ti += 1\n\nprint(p)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.567714214324951], "sample times": 1}

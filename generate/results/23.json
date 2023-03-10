@@ -1,0 +1,1 @@
+{"codes": ["a=input()\nb=input()\nprint(''.join(sorted(list(map(int, a))))\n"], "rewards": [0.0], "train rewards": [0.0], "time": 1.3025319576263428, "sample times": 1}

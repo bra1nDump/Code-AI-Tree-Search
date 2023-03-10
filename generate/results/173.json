@@ -1,0 +1,1 @@
+{"codes": ["n,m=map(int,input().split())\ns=input()\nt=input()\nif s.find('^')>=0 and t.find('^')>=0:\n\tprint('YES')\nelse:\n\tprint('NO')\n"], "rewards": [0.7073170731707317], "train rewards": [0.475], "time": [2.2533488273620605], "sample times": 1}

@@ -1,0 +1,1 @@
+{"codes": ["t = int(input())\nfor i in range(t):\n\tn = int(input())\n\ta = [list(map(int, input().split())) for j in range(n)]\n\tif len(set(a)) == 1:\n\t\tprint(\"YES\")\n\telse:\n\t\tprint(\"NO\")\n"], "rewards": [0.0], "train rewards": [0.0], "time": 4.348695755004883, "sample times": 1}

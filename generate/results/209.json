@@ -1,0 +1,1 @@
+{"codes": ["x, y = map(int, input().split())\nn = int(input())\nprint(pow(x, n + 1, 1000000007) % 1000000007)\n"], "rewards": [0.02702702702702703], "train rewards": [0.08108108108108109], "time": [1.5143952369689941], "sample times": 1}

@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\n\na.sort()\nres = 0\n\nfor i in range(n):\n\tif i < n // 2:\n\t\tres += a[n - i - 1]\n\t\ta[n - i - 1] = a[n - i]\n\telse:\n\t\tres += a[i - 1]\n\t\ta[i - 1] = a[i]\n\nprint(res)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.984029531478882], "sample times": 1}

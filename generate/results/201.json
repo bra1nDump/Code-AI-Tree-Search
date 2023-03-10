@@ -1,0 +1,1 @@
+{"codes": ["c, h, hb, w, wb = list(map(int, input().split()))\ns = c + wb + w + hb\nif s > c:\n\ts -= w\nprint(s)\n"], "rewards": [0.13157894736842105], "train rewards": [0.0], "time": [1.9698131084442139], "sample times": 1}

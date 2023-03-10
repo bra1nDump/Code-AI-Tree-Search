@@ -1,0 +1,1 @@
+{"codes": ["x1, y1, x2, y2 = list(map(int, input().split()))\n\nif x1 == x2:\n\tprint(x1, y1, x2, y2)\n\treturn\n\nif y1 == y2:\n\tprint(x1, y1, x2, y2)\n\treturn\n\nif x1 * x2!= y1 * y2:\n\tprint(-1)\n\treturn\n\nprint(x1 * x2 + y1 * y2, x1 * x2 + y1 * y1)\n"], "rewards": [0.10810810810810811], "train rewards": [0.3783783783783784], "time": [4.44528603553772], "sample times": 1}

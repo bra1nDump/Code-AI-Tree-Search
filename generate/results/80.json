@@ -1,0 +1,1 @@
+{"codes": ["l, r, x, y = map(int, input().split())\n\np = []\nfor i in range(l, r+1):\n\tif x%i == 0:\n\t\tp.append(i)\n\t\t\nans = 0\nfor i in p:\n\tfor j in p:\n\t\tif l*i//j <= r*j:\n\t\t\tans += 1\n\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.4159488677978516], "sample times": 1}

@@ -1,0 +1,1 @@
+{"codes": ["s, x = map(int, input().split())\n\nans = 0\nfor i in range(32):\n\tif s & (1 << i) == 0:\n\t\tans += 1\n\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [1.765362024307251], "sample times": 1}

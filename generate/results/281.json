@@ -1,0 +1,1 @@
+{"codes": ["a, b = map(int, input().split())\nr = 1\nfor _ in range(b):\n\tr *= a\n\tr //= (a+1)\nprint(r % 10)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [1.8400962352752686], "sample times": 1}

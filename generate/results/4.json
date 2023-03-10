@@ -1,0 +1,1 @@
+{"codes": ["x = int(input())\nh, m = map(int, input().split())\nsa = str(h)\nfor i in range(1, len(sa)):\n\tif sa[i] == '7':\n\t\tx += 1\nprint(x)\n"], "rewards": [0.031496062992125984], "train rewards": [0.031496062992125984], "time": 3.170168161392212, "sample times": 1}

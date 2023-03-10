@@ -1,0 +1,1 @@
+{"codes": ["x, y = map(int, input().split())\n\nresult = 0\n\nfor i in range(y - x + 1):\n\tresult += 1\n\tif x > y:\n\t\tx, y = y, x\n\nprint(result)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [2.2430081367492676], "sample times": 1}

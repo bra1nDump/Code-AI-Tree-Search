@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\n\nmx = 0\ni = 0\nwhile i < n:\n\tif a[i] > mx:\n\t\tmx = a[i]\n\t\ti += 1\n\nprint(mx)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [2.4905853271484375], "sample times": 1}

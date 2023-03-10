@@ -1,0 +1,1 @@
+{"codes": ["def pal(s):\n\tl = len(s)\n\treturn all(s[i:j] == s[i:j][::-1] for i in range(l-1) for j in range(i+2, l))\ns = input()\nif s == pal(s):\n\tprint(0)\nelse:\n\tprint(len(s))\n"], "rewards": [0.6417910447761194], "train rewards": [0.5303030303030303], "time": 4.230382204055786, "sample times": 1}

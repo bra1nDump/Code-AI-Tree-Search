@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\ns = input()\ncnt = 0\nfor i in range(n):\n\tcnt += 1\n\tif s[i].isupper():\n\t\tcnt += 1\nprint(cnt)\n"], "rewards": [0.0], "train rewards": [0.16666666666666666], "time": [2.0177724361419678], "sample times": 1}

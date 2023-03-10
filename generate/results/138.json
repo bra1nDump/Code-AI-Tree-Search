@@ -1,0 +1,1 @@
+{"codes": ["import math\n\nn, a, b, c = [int(i) for i in input().split()]\n\nprint(math.ceil(n / a) * b * c)\n"], "rewards": [0.1111111111111111], "train rewards": [0.0], "time": [1.7092480659484863], "sample times": 1}

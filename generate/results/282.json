@@ -1,0 +1,1 @@
+{"codes": ["n, d = map(int, input().split())\ns = input()\nif s[0] == '0':\n\tprint(-1)\nelse:\n\tc = 0\n\tfor i in range(len(s)):\n\t\tif s[i] == '1':\n\t\t\tc += 1\n\t\t\tif i + d <= n:\n\t\t\t\tprint(c)\n\t\t\t\tbreak\n\t\telse:\n\t\t\tc = 0\n"], "rewards": [0.0625], "train rewards": [0.1935483870967742], "time": [3.9002320766448975], "sample times": 1}

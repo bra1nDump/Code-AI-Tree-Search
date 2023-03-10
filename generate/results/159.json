@@ -1,0 +1,1 @@
+{"codes": ["n=int(input())\na=list(map(int,input().split()))\nc=0\nfor i in range(n):\n\tfor j in range(i+1,n):\n\t\tif a[i]==1 and a[j]==1:\n\t\t\tc+=1\n\t\t\tbreak\nprint(c)\nprint(' '.join(map(str,a)))\n"], "rewards": [0.0], "train rewards": [0.09523809523809523], "time": [3.166670083999634], "sample times": 1}

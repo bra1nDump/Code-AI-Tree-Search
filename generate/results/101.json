@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = int(input())\nb = int(input())\n\nif n % 2 == 0:\n\tprint('NO')\nelse:\n\tprint('YES')\n\tx = a\n\ty = b\n\tif x*a + y*b == n:\n\t\tprint('YES')\n\t\tprint(x, y)\n\telse:\n\t\tprint('NO')\n"], "rewards": [0.36], "train rewards": [0.14], "time": [3.4347617626190186], "sample times": 1}

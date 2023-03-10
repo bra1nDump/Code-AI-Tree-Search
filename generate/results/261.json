@@ -1,0 +1,1 @@
+{"codes": ["n=int(input())\ns=input()\nif '*' not in s:\n\tprint('no')\nelse:\n\tc=0\n\tfor i in range(n-2):\n\t\tif s[i]==s[i+2]=='.':\n\t\t\tc+=1\n\t\tif c==5:\n\t\t\tc=0\n\tif c==5:\n\t\tprint('yes')\n\telse:\n\t\tprint('no')\n"], "rewards": [0.5454545454545454], "train rewards": [0.125], "time": [3.934896945953369], "sample times": 1}

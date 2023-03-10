@@ -1,0 +1,1 @@
+{"codes": ["n=int(input())\na=list(map(int,input().split()))\nm=int(input())\nb=list(map(int,input().split()))\na.sort()\nb.sort()\nans=0\nfor i in range(n):\n\tans+=(a[i]*b[i])//2\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.06060606060606061], "time": [2.922114133834839], "sample times": 1}

@@ -1,0 +1,1 @@
+{"codes": ["def countVowels(s):\n\treturn sum(c in \"aeiouyAEIOUY\" for c in s)\n\ns = input()\nprint(countVowels(s))\n"], "rewards": [0.08571428571428572], "train rewards": [0.02857142857142857], "time": [1.709507942199707], "sample times": 1}

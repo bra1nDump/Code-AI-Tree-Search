@@ -1,0 +1,1 @@
+{"codes": ["n, k = map(int, input().split())\na = list(map(int, input().split()))\np, q = (k - 1) * 2, (k * (k - 1)) // 2\n\nfor i in range(n):\n\ta[i] = a[i] * p + a[i] * q\n\nprint(a[n - 1])\n"], "rewards": [0.02564102564102564], "train rewards": [0.07894736842105263], "time": [3.333137273788452], "sample times": 1}

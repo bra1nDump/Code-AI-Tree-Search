@@ -1,0 +1,1 @@
+{"codes": ["a, b, c, d, e = list(map(int, input().split()))\n\nl = 0\nr = 0\n\nwhile l + 1 < r:\n\tm = (l + r) // 2\n\tif a * m + b * m - c * m >= e:\n\t\tl = m\n\telse:\n\t\tr = m\n\nprint(l)\n"], "rewards": [0.0], "train rewards": [0.0], "time": 3.845344066619873, "sample times": 1}

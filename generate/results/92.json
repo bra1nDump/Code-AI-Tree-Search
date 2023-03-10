@@ -1,0 +1,1 @@
+{"codes": ["a, b, c = map(int, input().split())\nprint(a * b * c * (c - 1) // 2 + (b * c * a * (a - 1) // 2) % 1073741824)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [1.9341275691986084], "sample times": 1}

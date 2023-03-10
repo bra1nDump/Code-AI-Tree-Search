@@ -1,0 +1,1 @@
+{"codes": ["n, m, k = list(map(int, input().split()))\n\nl = [0 for i in range(n)]\n\nfor i in range(n):\n\tl[i] = m * (i + 1)\n\tl[i+1] = m * (i + 2)\n\nk = sorted(list(range(m-k+1)), key=lambda x: l[x])[k-1]\n\nprint(k)\n\n"], "rewards": [0.0], "train rewards": [0.0], "time": 4.65917181968689, "sample times": 1}

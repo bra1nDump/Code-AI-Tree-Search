@@ -1,0 +1,1 @@
+{"codes": ["from collections import Counter\nn = int(input())\n\nc = 0\nfor _ in range(n):\n\ts = input()\n\tt = Counter(s)\n\tif len(t) == (len(s) + 1) // 3:\n\t\tprint(\"Kuro\")\n\t\tbreak\n\n\tc += max(t.values())\n\nif c == 0:\n\tprint(\"Draw\")\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.6535544395446777], "sample times": 1}

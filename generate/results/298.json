@@ -1,0 +1,1 @@
+{"codes": ["n, k = map(int, input().split())\nif n % k == 0:\n\tprint('NO')\nelse:\n\tprint('YES')\n"], "rewards": [0.5161290322580645], "train rewards": [0.5161290322580645], "time": [1.3963501453399658], "sample times": 1}

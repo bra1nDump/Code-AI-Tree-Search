@@ -1,0 +1,1 @@
+{"codes": ["x, y, l, r = list(map(int, input().split()))\n\ndef calc(y):\n\tce = 0\n\tfor i in range(1, y+1):\n\t\tce += 2**i\n\treturn ce\n\n\nans = 0\nfor i in range(l, r+1):\n\tif calc(i) == y:\n\t\tans = max(ans, i)\n\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.465803861618042], "sample times": 1}

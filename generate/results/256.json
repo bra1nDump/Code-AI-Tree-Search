@@ -1,0 +1,1 @@
+{"codes": ["def main():\n\ta, b = map(int, input().split())\n\ta1, b1 = a[0], a[1]\n\tif b1 > b:\n\t\tprint('Team 1')\n\telif b1 == b:\n\t\tprint('Draw')\n\telse:\n\t\tprint('Team 2')\n\n\ndef __starting_point():\n\tmain()\n\n__starting_point()\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.6017701625823975], "sample times": 1}

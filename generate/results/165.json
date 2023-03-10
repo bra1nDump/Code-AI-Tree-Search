@@ -1,0 +1,1 @@
+{"codes": ["def main():\n\tb, d, s = list(map(int, input().split()))\n\tif b + d + s < 2 * b:\n\t\tprint(0)\n\t\treturn\n\n\tprint(b * d * s - b * (d + s) // 2)\n\nmain()\n"], "rewards": [0.023809523809523808], "train rewards": [0.14634146341463414], "time": [2.7411885261535645], "sample times": 1}

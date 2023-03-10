@@ -1,0 +1,1 @@
+{"codes": ["n, m = list(map(int, input().split()))\n\nif n == m:\n\tprint(n)\nelse:\n\tf = 1\n\tt = 0\n\tk = 1\n\twhile f < n:\n\t\tt += k\n\t\tk += 2\n\t\tf += t\n\t\tif f == n:\n\t\t\tprint(k)\n\t\t\tf -= 1\n\t\t\tk = 1\n"], "rewards": [0.008928571428571428], "train rewards": [0.0], "time": 5.5048840045928955, "sample times": 1}

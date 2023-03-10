@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\ns = input()\n\nans = 0\n\nfor i in range(n):\n\tif s[i] == '-':\n\t\tans += 1\n\telse:\n\t\tans -= 1\n\nif ans == 0:\n\tprint(0)\nelse:\n\tprint(ans + s.count('+'))\n"], "rewards": [0.07317073170731707], "train rewards": [0.04878048780487805], "time": [3.0377445220947266], "sample times": 1}

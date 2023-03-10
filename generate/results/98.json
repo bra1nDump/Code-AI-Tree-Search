@@ -1,0 +1,1 @@
+{"codes": ["a, b = map(int, input().split())\nc, d = map(int, input().split())\nif (a + c == b) or (a + d == b) or (b + c == a) or (b + d == a):\n\tprint(\"YES\")\nelse:\n\tprint(\"NO\")\n"], "rewards": [0.803921568627451], "train rewards": [0.14], "time": [2.7074954509735107], "sample times": 1}

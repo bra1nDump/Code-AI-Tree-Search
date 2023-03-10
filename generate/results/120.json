@@ -1,0 +1,1 @@
+{"codes": ["n=int(input())\ns=list(input())\n\nfor i in range(len(s)):\n\tif s[i]=='?':\n\t\tcontinue\n\t\n\telse:\n\t\ts[i]=chr(ord(s[i])-97)\n\t\t\nif s==s[::-1]:\n\tprint('==')\nelse:\n\tprint(''.join(s))\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.4097049236297607], "sample times": 1}

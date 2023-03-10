@@ -1,0 +1,1 @@
+{"codes": ["n, m, k, l = map(int, input().split())\nif m * k > n:\n\tprint(-1)\nelse:\n\ta = [0] * m\n\tfor i in range(k):\n\t\ta[i + 1] += 1\n\tif a[-1] > l:\n\t\tprint(-1)\n\telse:\n\t\tprint(a[-1] + l // a[-1])\n"], "rewards": [0.6304347826086957], "train rewards": [0.5777777777777777], "time": [3.550374746322632], "sample times": 1}

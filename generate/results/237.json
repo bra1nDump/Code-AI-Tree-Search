@@ -1,0 +1,1 @@
+{"codes": ["n, m, k = list(map(int, input().split()))\nif n == m and k == 1:\n\tprint(1)\nelse:\n\tif k >= n - m:\n\t\tprint(m * 2)\n\telse:\n\t\tprint(m * 2 - 1)\n"], "rewards": [0.0], "train rewards": [0.058823529411764705], "time": [2.5123043060302734], "sample times": 1}

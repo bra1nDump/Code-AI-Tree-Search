@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input()))\n\nm = 0\nfor i in range(n):\n\tif a[i] == 'D':\n\t\tm += 1\n\telse:\n\t\tbreak\n\nif m % 2 == 0:\n\tprint('R')\nelse:\n\tprint('D')\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.0471129417419434], "sample times": 1}

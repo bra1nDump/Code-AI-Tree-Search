@@ -1,0 +1,1 @@
+{"codes": ["def main():\n\tn, k = list(map(int, input().split()))\n\tif n == k:\n\t\tprint('Yes')\n\t\treturn\n\tr = list(range(1, k + 1))\n\tr.sort()\n\tif len(set(r)) == len(r):\n\t\tprint('Yes')\n\telse:\n\t\tprint('No')\n\n\ndef __starting_point():\n\tmain()\n\n__starting_point()\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.6761293411254883], "sample times": 1}

@@ -1,0 +1,1 @@
+{"codes": ["s=input()\nr,b,y,g=0,0,0,0\nfor i in range(len(s)):\n\tif s[i]=='R':\n\t\tr+=1\n\telif s[i]=='B':\n\t\tb+=1\n\telif s[i]=='Y':\n\t\ty+=1\n\telif s[i]=='G':\n\t\tg+=1\nprint(r,b,y,g)\n"], "rewards": [0.030303030303030304], "train rewards": [0.09375], "time": [4.123820543289185], "sample times": 1}

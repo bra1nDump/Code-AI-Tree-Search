@@ -1,0 +1,1 @@
+{"codes": ["a=input()\nb=input()\nif len(a)==len(b):\n\tprint(\"=\")\nelse:\n\tc=0\n\tfor i in range(len(a)):\n\t\tif a[i]==b[i]:\n\t\t\tc+=1\n\tif c==len(a):\n\t\tprint(\"=\")\n\telse:\n\t\tprint(\">\"\n\t\t\t\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.3985068798065186], "sample times": 1}

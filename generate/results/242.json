@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\n\np = 1\n\nans = []\n\nwhile p < n:\n\tif n == p:\n\t\tans.append(p)\n\t\tbreak\n\tp *= p + 1\n\nans.sort()\n\nfor i in ans:\n\tprint(i, end='')\n"], "rewards": [0.0], "train rewards": [0.0], "time": [2.632897138595581], "sample times": 1}

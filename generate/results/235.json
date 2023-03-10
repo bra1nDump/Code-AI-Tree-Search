@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\n\nk = 1\nwhile n >= 2 * k:\n\tif n >= 2 * k:\n\t\tbreak\n\telse:\n\t\tk += 1\n\nans = n // k\nif ans % 10 == 0:\n\tans += 1\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.029411764705882353], "time": [2.639124870300293], "sample times": 1}

@@ -1,0 +1,1 @@
+{"codes": ["# cook your dish here\na=input().split()\nprint(sorted(list(a),key=lambda x: (ord(x[0]),ord(x[1]))))\n"], "rewards": [0.0], "train rewards": [0.0], "time": [1.5798420906066895], "sample times": 1}

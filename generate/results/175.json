@@ -1,0 +1,1 @@
+{"codes": ["n, m = list(map(int, input().split()))\n\na = m\n\nif a >= 2 * m:\n\ta = 2 * m - a\n\nif a >= 2 * n:\n\ta = 2 * n - a\n\nprint(a, b)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [2.2930846214294434], "sample times": 1}

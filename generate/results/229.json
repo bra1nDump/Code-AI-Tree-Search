@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\n\ns = sum(a)\nres = s/n\nif res < n:\n\tprint(\"NO\")\nelse:\n\tprint(\"YES\")\n"], "rewards": [0.37142857142857144], "train rewards": [0.37142857142857144], "time": [2.017712116241455], "sample times": 1}

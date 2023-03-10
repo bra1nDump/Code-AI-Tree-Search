@@ -1,0 +1,1 @@
+{"codes": ["s = input()\nprint(s.translate(str.maketrans('abcdefghijklmnopqrstuvwxyz', '23456789')))\n"], "rewards": [0.0], "train rewards": [0.0], "time": [1.535546064376831], "sample times": 1}
