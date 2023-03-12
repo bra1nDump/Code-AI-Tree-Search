@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\n\nl = [True] * (n // 2)\n\nfor i in range(3, n // 2 + 1, 2):\n\tl[i] = False\n\nfor i in range(3, n // 2 + 2, 2):\n\tif not l[i]:\n\t\tprint(i)\n\t\tbreak\n"], "rewards": [0.0625], "train rewards": [0.03225806451612903], "time": [2.7662463188171387], "sample times": 1}

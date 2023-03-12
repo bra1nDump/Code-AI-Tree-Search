@@ -1,0 +1,1 @@
+{"codes": ["d, k, a, b, t = list(map(int, input().split()))\ns = t + b\nt = t % b\ns = s - t\n\nans = 0\nwhile s < d:\n\tif s == d:\n\t\tans = max(ans, t)\n\t\tbreak\n\ts = s - d\n\nprint(ans + d)\n"], "rewards": [0.0], "train rewards": [0.0], "time": 4.227496147155762, "sample times": 1}

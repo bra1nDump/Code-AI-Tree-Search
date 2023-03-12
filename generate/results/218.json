@@ -1,0 +1,1 @@
+{"codes": ["n, p, q = list(map(int, input().split()))\ns = input()\n\nif n % p == 0:\n\tprint(-1)\n\treturn\n\nif n % q == 0:\n\tprint(-1)\n\treturn\n\na = []\nfor i in range(n//p):\n\ta.append(s[i:i+p])\n\nfor i in range(n//q):\n\ta.append(s[i:i+q])\n\nfor string in a:\n\tprint(string)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [4.213648080825806], "sample times": 1}

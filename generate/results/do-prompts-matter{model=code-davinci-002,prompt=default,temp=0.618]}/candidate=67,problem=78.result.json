@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nT, N = map(int, input().split())\nsongs = []\nfor i in range(N):\n  t, g = map(int, input().split())\n  songs.append((t, g))\n  \n# dp[i][t][g] = number of playlists of length t using the first i songs that ended with the song of genre g\ndp = [[[0 for i in range(4)] for j in range(T+1)] for k in range(N+1)]\n\ndef add(x, y):\n  return (x + y) % 1000000007\n\nfor i in range(1, N+1):\n  for t in range(1, T+1):\n    for g in range(1, 4):\n      if t >= songs[i-1][0] and songs[i-1][1] != g:\n        dp[i][t][g] = add(dp[i][t][g], dp[i-1][t-songs[i-1][0]][songs[i-1][1]])\n      for g2 in range(1, 4):\n        if t >= songs[i-1][0] and g2 != g and g2 != songs[i-1][1]:\n          dp[i][t][g] = add(dp[i][t][g], dp[i-1][t-songs[i-1][0]][g2])\n      dp[i][t][g] = add(dp[i][t][g], dp[i-1][t][g])\n\nresult = 0\nfor i in range(1, N+1):\n  for g in range(1, 4):\n    result = add(result, dp[i][T][g])\n\nprint(result)"
+    ],
+    "rewards": [
+        0.05454545454545454
+    ],
+    "train rewards": [
+        0.1111111111111111
+    ],
+    "time": 7.660702228546143,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

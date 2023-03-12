@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n\ndef count_playlists(tracks):\n    \"\"\"\n    Counts the number of playlists of length T, given a list of tracks.\n    Tracks is a list of tuples of the form (length, genre).\n    \"\"\"\n    n = len(tracks)\n    T = sum([t[0] for t in tracks])\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    # dp[i][j] = number of playlists with length j, ending in track i\n    dp = [[0 for _ in range(T + 1)] for _ in range(n)]\n    # Initialize base cases\n    for i in range(n):\n        dp[i][tracks[i][0]] = 1\n    # Iterate\n    for j in range(1, T + 1):\n        for i in range(n):\n            # The last track played must be track i\n            if j - tracks[i][0] >= 0:\n                # Playlists without track i\n                dp[i][j] += sum(dp[i][j - tracks[i][0]])\n                # Playlists with track i\n                for k in range(n):\n                    if k != i and tracks[k][1] != tracks[i][1] and j - tracks[i][0] - tracks[k][0] >= 0:\n                        dp[i][j] += dp[k][j - tracks[i][0] - tracks[k][0]]\n    return sum(dp[i][T] for i in range(n))\n\n\ndef main():\n    n, T = map(int, input().split())\n    tracks = []\n    for _ in range(n):\n        tracks.append(tuple(map(int, input().split())))\n    print(count_playlists(tracks) % (10**9 + 7))\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.05555555555555555
+    ],
+    "time": 8.095755100250244,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

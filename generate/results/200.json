@@ -1,0 +1,1 @@
+{"codes": ["h1, h2 = map(int, input().split())\na, b = map(int, input().split())\n\nans = 0\nnow = h1\nfor i in range(24 * 30):\n\tnow -= a\n\tnow += b\n\tif now < h2:\n\t\tans += 1\n\t\tnow = h2\n\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.05263157894736842], "time": [3.06028413772583], "sample times": 1}

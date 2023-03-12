@@ -1,0 +1,75 @@
+{
+    "codes": [
+        "\nimport sys\n\ndef main():\n    n, T = map(int, sys.stdin.readline().split())\n    songs = []\n    for i in range(n):\n        songs.append(list(map(int, sys.stdin.readline().split())))\n    songs.sort(key=lambda x: x[0])\n    dp = [[0] * (T + 1) for _ in range(n)]\n    dp[0][songs[0][0]] = 1\n    for i in range(1, n):\n        for j in range(T + 1):\n            if dp[i - 1][j] > 0:\n                if j + songs[i][0] <= T:\n                    dp[i][j + songs[i][0]] += dp[i - 1][j]\n                if j + songs[i][0] <= T and songs[i][1] != songs[i - 1][1]:\n                    dp[i][j + songs[i][0]] += dp[i - 1][j]\n    print(dp[n - 1][T])\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.4
+    ],
+    "train rewards": [
+        0.4074074074074074
+    ],
+    "time": 4.880963087081909,
+    "sample times": 2,
+    "test_rewards": [
+        [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            true,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+        ]
+    ],
+    "train_rewards": [
+        []
+    ]
+}

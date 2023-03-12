@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\ns = input()\n\nif n == 11:\n\tprint(\"YES\")\nelse:\n\ti = 0\n\twhile i < n:\n\t\tif s[i] == '8':\n\t\t\tbreak\n\t\ti += 1\n\tif i == n:\n\t\tprint(\"YES\")\n\telse:\n\t\tprint(\"NO\")\n"], "rewards": [0.6], "train rewards": [0.525], "time": [3.0883948802948], "sample times": 1}

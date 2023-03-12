@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\ndef create_prefix_sums(n, lst):\n    prefix_sums = []\n    prefix_sums.append(lst[0])\n    for i in range(1, len(lst)):\n        prefix_sums.append(prefix_sums[i-1] + lst[i])\n    return prefix_sums\n\ndef find_index(prefix_sums, target):\n    l = 0\n    r = len(prefix_sums) - 1\n    while l <= r:\n        mid = (l + r) // 2\n        if prefix_sums[mid] == target:\n            return mid\n        elif prefix_sums[mid] < target:\n            l = mid + 1\n        else:\n            r = mid - 1\n    return l\n\ndef get_valid_subsets(n, m, songs, prefix_sums, target):\n    total = 0\n    for i in range(m):\n        index = find_index(prefix_sums[i], target)\n        if index == n:\n            break\n        if index == 0:\n            continue\n        if songs[i][1] != songs[index][1]:\n            total += 1\n    return total\n\ndef main():\n    n, m = list(map(int, input().split()))\n    songs = []\n    for i in range(n):\n        songs.append(list(map(int, input().split())))\n    songs.sort()\n    prefix_sums = []\n    for i in range(3):\n        prefix_sums.append(create_prefix_sums(n, [song[0] for song in songs if song[1] == i+1]))\n    \n    total = 0\n    for i in range(n):\n        for j in range(i+1, n):\n            for k in range(j+1, n):\n                if songs[i][1] != songs[j][1] and songs[j][1] != songs[k][1] and songs[i][1] != songs[k][1]:\n                    total += get_valid_subsets(n, m, songs, prefix_sums, m - (songs[i][0] + songs[j][0] + songs[k][0]))\n\n    print(total)\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.018518518518518517
+    ],
+    "time": 8.81631588935852,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

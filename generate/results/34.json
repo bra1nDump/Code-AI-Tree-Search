@@ -1,0 +1,1 @@
+{"codes": ["n, a, b = map(int, input().split())\n\nprint(min(n // 2, (a + b) // 2))\n"], "rewards": [0.1323529411764706], "train rewards": [0.208955223880597], "time": 1.785203218460083, "sample times": 1}

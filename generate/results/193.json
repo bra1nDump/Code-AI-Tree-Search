@@ -1,0 +1,1 @@
+{"codes": ["a, b = map(int, input().split())\nc, d = map(int, input().split())\nprint(abs(a - b * c - d * b))\n"], "rewards": [0.0], "train rewards": [0.05263157894736842], "time": [1.6299114227294922], "sample times": 1}

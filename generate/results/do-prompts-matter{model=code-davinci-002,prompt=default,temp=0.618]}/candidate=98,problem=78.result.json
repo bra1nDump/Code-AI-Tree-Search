@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n\ndef solve(n, T, songs):\n    \"\"\"\n    Dynamic programming solution.\n    The idea is to use a 3D array to store the number of possible playlists ending with\n    a song of a certain duration and genre.\n    The first dimension corresponds to the ending duration of the playlist, the second\n    dimension corresponds to the genre of the last song and the third dimension\n    corresponds to the second last song.\n    \"\"\"\n\n    dp = [[[0 for _ in range(4)] for _ in range(4)] for _ in range(T + 1)]\n\n    # Base cases:\n    # 1. The playlist is empty\n    for g in range(4):\n        dp[0][g][0] = 1\n    # 2. The playlist has a single song\n    for s in songs:\n        dp[s[0]][s[1]][0] += 1\n\n    # Iterate through all possibilities\n    for g in range(1, 4):\n        for s in songs:\n            for t in range(T + 1):\n                # We can only take songs that are shorter than the remaining duration\n                if s[0] <= t:\n                    # The playlist's ending duration is the current duration minus the duration of the current song\n                    dp[t][s[1]][g] += dp[t - s[0]][s[1]][g - 1]\n\n    # The answer is the sum of all possible ending durations, ending genres and second last genres\n    return sum(sum(sum(dp[t][g][h] for h in range(4)) for g in range(4)) for t in range(T + 1)) % (10 ** 9 + 7)\n\n\ndef main():\n    n, T = map(int, input().split())\n    songs = []\n    for _ in range(n):\n        songs.append(list(map(int, input().split())))\n    print(solve(n, T, songs))\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 7.87890100479126,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

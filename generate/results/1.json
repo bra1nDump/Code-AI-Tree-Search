@@ -1,0 +1,1 @@
+{"codes": ["x = int(input())\n\nl = list(range(x+1))\n\nm = next(l)\n\nsums = sum(list([int(i) for i in str(m)]))\n\nif sums > len(str(m)):\n\tm = next(l)\n\nprint(m)\n"], "rewards": [0.0], "train rewards": [0.0], "time": 3.2519421577453613, "sample times": 1}

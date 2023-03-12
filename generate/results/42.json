@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\ns = input()\n\ncnt = 0\nfor i in range(1, n):\n\tfor j in range(i):\n\t\tif s[i:j+1]!= s[j:i+1]:\n\t\t\tcnt += 1\n\nprint(cnt)\n"], "rewards": [0.0], "train rewards": [0.015384615384615385], "time": 3.465398073196411, "sample times": 1}

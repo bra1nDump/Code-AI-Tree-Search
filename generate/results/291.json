@@ -1,0 +1,1 @@
+{"codes": ["a, b = map(int, input().split())\n\nc = 0\n\nwhile a > b:\n\ta, b = b, a % b\n\tc += 1\n\nprint(c)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [1.7977030277252197], "sample times": 1}

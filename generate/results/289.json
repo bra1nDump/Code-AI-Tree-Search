@@ -1,0 +1,1 @@
+{"codes": ["s = input()\n\ncnt = 0\n\nfor c in s:\n\tif c == 'K':\n\t\tcnt += 1\n\tif c == 'V':\n\t\tcnt -= 1\n\nprint(max(cnt, 0))\n"], "rewards": [0.0625], "train rewards": [0.0967741935483871], "time": [2.1934356689453125], "sample times": 1}

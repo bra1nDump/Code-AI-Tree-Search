@@ -1,0 +1,1 @@
+{"codes": ["l, r, a = map(int, input().split())\nif a % 2 == 0:\n\tprint(l + r)\nelse:\n\tprint(l + r - 2)\n"], "rewards": [0.05], "train rewards": [0.05128205128205128], "time": [1.716501235961914], "sample times": 1}

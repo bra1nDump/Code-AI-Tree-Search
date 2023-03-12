@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport copy\nimport math\n\nclass Song(object):\n    \"\"\"\n    class for a song\n    \"\"\"\n    def __init__(self, duration, genre):\n        self.duration = duration\n        self.genre = genre\n\n    def __str__(self):\n        return f\"{self.duration} {self.genre}\"\n\n    def __repr__(self):\n        return self.__str__()\n\nclass Playlist(object):\n    \"\"\"\n    class for a playlist of songs\n    \"\"\"\n    def __init__(self, songs):\n        self.songs = songs\n        self.duration = sum([x.duration for x in self.songs])\n\n    def __str__(self):\n        return f\"{self.duration} {self.songs}\"\n\n    def __repr__(self):\n        return self.__str__()\n\n\ndef get_playlists(songs, T):\n    \"\"\"\n    get playlists of songs that sum to T\n    \"\"\"\n    if len(songs) == 0:\n        return []\n    if len(songs) == 1:\n        if songs[0].duration == T:\n            return [Playlist([songs[0]])]\n        else:\n            return []\n\n    # call with one less song\n    playlists_one_less = get_playlists(songs[1:], T)\n\n    # call with one more\n    playlists_one_more = get_playlists(songs[1:], T - songs[0].duration)\n    for playlist in playlists_one_more:\n        playlist.songs.append(songs[0])\n        playlist.duration += songs[0].duration\n\n    return playlists_one_less + playlists_one_more\n\n\ndef remove_duplicates(playlists):\n    \"\"\"\n    remove duplicate playlists from a list of playlists\n    \"\"\"\n    playlists_copy = copy.deepcopy(playlists)\n    for playlist_idx in range(len(playlists)):\n        for playlist_copy_idx in range(playlist_idx + 1, len(playlists_copy)):\n            if playlists[playlist_idx].songs == playlists_copy[playlist_copy_idx].songs:\n                playlists_copy.pop(playlist_copy_idx)\n                break\n    return playlists_copy\n\n\ndef remove_repeats(playlists):\n    \"\"\"\n    remove playlists with adjacent songs of the same genre\n    \"\"\"\n    playlists_copy = copy.deepcopy(playlists)\n    for playlist_idx in range(len(playlists)):\n        for song_idx in range(len(playlists[playlist_idx].songs) - 1):\n            if playlists[playlist_idx].songs[song_idx].genre == playlists[playlist_idx].songs[song_idx + 1].genre:\n                playlists_copy.pop(playlist_idx)\n                break\n    return playlists_copy\n\n\ndef count_playlists(playlists):\n    \"\"\"\n    count the number of unique playlists\n    \"\"\"\n    modulo = 1000000007\n    unique_playlists = remove_duplicates(playlists)\n    unique_playlists = remove_repeats(unique_playlists)\n    unique_playlists = remove_duplicates(unique_playlists)\n    return len(unique_playlists) % modulo\n\n\nif True:\n    n, T = [int(x) for x in input().strip().split(\" \")]\n    songs = []\n    for _ in range(n):\n        duration, genre = [int(x) for x in input().strip().split(\" \")]\n        songs.append(Song(duration, genre))\n    playlists = get_playlists(songs, T)\n    # print(playlists)\n    print(count_playlists(playlists))"
+    ],
+    "rewards": [
+        0.4
+    ],
+    "train rewards": [
+        0.4444444444444444
+    ],
+    "time": 19.574888944625854,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

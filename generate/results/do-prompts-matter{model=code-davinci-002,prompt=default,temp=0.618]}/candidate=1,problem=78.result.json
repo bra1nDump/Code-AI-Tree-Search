@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport collections\nimport copy\n\nn, T = map(int, input().split())\nsongs = []\nfor i in range(n):\n    t, g = map(int, input().split())\n    songs.append((t, g))\n\n\ndef play_song(song, prev_song):\n    if prev_song is None:\n        return True\n    if song[1] == prev_song[1]:\n        return False\n    return True\n\n\ndef play_playlist(playlist, prev_playlist):\n    if prev_playlist is None:\n        return True\n    if len(playlist) != len(prev_playlist):\n        return False\n    for i in range(len(playlist)):\n        if playlist[i][0] != prev_playlist[i][0]:\n            return False\n        if playlist[i][1] == prev_playlist[i][1]:\n            return False\n    return True\n\n\ndef play_playlists(playlists, prev_playlists):\n    if prev_playlists is None:\n        return True\n    if len(playlists) != len(prev_playlists):\n        return False\n    for i in range(len(playlists)):\n        if play_playlist(playlists[i], prev_playlists[i]) is False:\n            return False\n    return True\n\n\ndef dfs(songs, playlists, time_left, prev_playlists):\n    if time_left == 0:\n        if play_playlists(playlists, prev_playlists) is True:\n            return 1\n        else:\n            return 0\n    if len(songs) == 0:\n        return 0\n\n    num_playlists = 0\n    for i in range(len(songs)):\n        new_playlists = copy.deepcopy(playlists)\n        new_playlists.append(songs[i])\n        num_playlists += dfs(songs[:i] + songs[i + 1:], new_playlists, time_left - songs[i][0], playlists)\n\n    return num_playlists\n\n\ndef main():\n    num_playlists = 0\n    for i in range(len(songs)):\n        num_playlists += dfs(songs[:i] + songs[i + 1:], [songs[i]], T - songs[i][0], None)\n    print(num_playlists)\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 10.364119052886963,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

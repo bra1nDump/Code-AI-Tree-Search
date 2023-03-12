@@ -1,0 +1,1 @@
+{"codes": ["n, m = map(int, input().split())\n\na = [input() for _ in range(n)]\n\na.sort()\n\nif a[0][0] == a[1][0] == a[2][0]:\n\tprint(\"YES\")\nelse:\n\tprint(\"NO\")\n"], "rewards": [0.5441176470588235], "train rewards": [0.3880597014925373], "time": 3.3831963539123535, "sample times": 1}

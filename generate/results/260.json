@@ -1,0 +1,1 @@
+{"codes": ["m, k = map(int, input().split())\nif m * k > 2:\n\tprint(2 * (k - 1))\nelse:\n\tprint(2 * k)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [1.5090248584747314], "sample times": 1}

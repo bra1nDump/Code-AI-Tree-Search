@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n\ndef solve(n, T, songs):\n    \"\"\"\n    Use dynamic programming to solve the problem\n    \"\"\"\n    # Initialize the list of lists\n    # dp[i][j] - list containing all the ways to sum up to i with songs of length up to j\n    dp = [[[] for _ in range(T + 1)] for _ in range(n + 1)]\n\n    # Initialize the base case\n    dp[0][0] = [[]]\n\n    # Iterate through all songs\n    for i in range(1, n + 1):\n        # Iterate through all lengths\n        for j in range(T + 1):\n            # If current song length fits\n            if j >= songs[i][0]:\n                # If previous song has the same genre\n                if i > 1 and songs[i][1] == songs[i - 1][1]:\n                    for k in range(j - songs[i][0] + 1):\n                        for lst in dp[i - 1][k]:\n                            dp[i][j].append(lst + [i])\n                # If previous song has a different genre\n                else:\n                    for k in range(j - songs[i][0] + 1):\n                        for lst in dp[i - 1][k] + dp[i - 2][k]:\n                            dp[i][j].append(lst + [i])\n            # If current song length doesn't fit\n            else:\n                # If previous song has the same genre\n                if i > 1 and songs[i][1] == songs[i - 1][1]:\n                    for lst in dp[i - 1][j]:\n                        dp[i][j].append(lst + [i])\n                # If previous song has a different genre\n                else:\n                    for lst in dp[i - 1][j] + dp[i - 2][j]:\n                        dp[i][j].append(lst + [i])\n\n    return dp[n][T]\n\n\ndef main():\n    n, T = [int(x) for x in input().split()]\n    songs = {i + 1: [int(x) for x in input().split()] for i in range(n)}\n\n    result = solve(n, T, songs)\n\n    print(len(result))\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 8.325317859649658,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport sys\n\ndef main():\n    #read in data\n    line = sys.stdin.readline()\n    line = line.strip()\n    line = line.split(' ')\n    numSongs = int(line[0])\n    totalTime = int(line[1])\n    songList = []\n    for i in range(numSongs):\n        song = sys.stdin.readline()\n        song = song.strip()\n        song = song.split(' ')\n        song = [int(x) for x in song]\n        songList.append(song)\n    #print(\"songList:\",songList)\n\n    #sort songs by length\n    songList.sort(key=lambda x: x[0])\n    #print(\"songList:\",songList)\n\n    #create list of songs for each length\n    songDict = {}\n    for i in range(1,16):\n        songDict[i] = []\n    for i in range(numSongs):\n        songDict[songList[i][0]].append(songList[i])\n    #print(songDict)\n\n    #determine if any song has length that is greater than totalTime\n    for i in range(len(songList)):\n        if songList[i][0] > totalTime:\n            print(0)\n            return\n\n    #create dictionary of songs for each genre\n    songGenreDict = {1:[],2:[],3:[]}\n    for i in range(1,4):\n        for j in range(1,16):\n            for song in songDict[j]:\n                if song[1] == i:\n                    songGenreDict[i].append(song)\n    #print(songGenreDict)\n\n    #create dictionary of songs of each length for each genre\n    songGenreDictLength = {1:{},2:{},3:{}}\n    for i in range(1,4):\n        for j in range(1,16):\n            songGenreDictLength[i][j] = []\n    for i in range(1,4):\n        for j in range(1,16):\n            for song in songGenreDict[i]:\n                if song[0] == j:\n                    songGenreDictLength[i][j].append(song)\n    #print(songGenreDictLength)\n\n    #initialize songList for each length and genre\n    songListLengthGenre = {}\n    for i in range(1,16):\n        songListLengthGenre[i] = {}\n        for j in range(1,4):\n            songListLengthGenre[i][j] = []\n    #print(songListLengthGenre)\n\n    #determine # of songs of each length and genre\n    for i in range(1,16):\n        if songDict[i] != []:\n            for song in songDict[i]:\n                songListLengthGenre[i][song[1]].append(song)\n    #print(songListLengthGenre)\n\n    #determine if any song of a particular genre has length that is greater than totalTime\n    for i in range(1,4):\n        for song in songGenreDict[i]:\n            if song[0] > totalTime:\n                print(0)\n                return\n\n    #determine if totalTime is divisible by any length\n    for i in range(1,16):\n        if songDict[i] != []:\n            if totalTime % i == 0:\n                print(1)\n                return\n\n    #initialize list of songs that can be played\n    songListPlayable = []\n    for i in range(1,16):\n        for song in songDict[i]:\n            songListPlayable.append(song)\n    #print(songListPlayable)\n\n    #initialize list of songs that cannot be played\n    songListNotPlayable = []\n    for i in range(1,16):\n        for song in songDict[i]:\n            if song[0] > totalTime:\n                songListNotPlayable.append(song)\n    #print(songListNotPlayable)\n\n    #initialize list of songs that can be played for each genre\n    songListPlayableGenre = {1:[],2:[],3:[]}\n    for i in range(1,4):\n"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 17.060805797576904,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

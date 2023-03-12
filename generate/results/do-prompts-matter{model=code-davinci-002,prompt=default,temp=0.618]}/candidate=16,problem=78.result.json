@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n\ndef main():\n    n, T = map(int, input().strip().split())\n    durations = []\n    genres = []\n    for i in range(n):\n        t, g = map(int, input().strip().split())\n        durations.append(t)\n        genres.append(g)\n    dp = [[[0] * 4 for i in range(T)] for j in range(n)]\n    # dp[i][j] = number of playlists with length j ending with song i\n    # dp[i][j][k] = number of playlists with length j ending with song i and last genre k\n    # dp[i][j][0] = number of playlists with length j ending with song i and last genre 0 (unused)\n    # dp[i][j][1] = number of playlists with length j ending with song i and last genre 1\n    # dp[i][j][2] = number of playlists with length j ending with song i and last genre 2\n    # dp[i][j][3] = number of playlists with length j ending with song i and last genre 3\n    for i in range(n):\n        for j in range(T):\n            for k in range(4):\n                dp[i][j][k] = 0\n    for i in range(n):\n        for j in range(durations[i], T+1):\n            # playlist of length j that ends with song i\n            # ending with genre x\n            g = genres[i]\n            x = g\n            # playlist of length j-durations[i] that ends with song i-1 and last genre x\n            dp[i][j][x] = (dp[i][j][x] + dp[i-1][j-durations[i]][x]) % (10**9 + 7)\n            # playlist of length j-durations[i] that ends with song i-1 and last genre !x\n            for y in range(1, 4):\n                if y == x:\n                    continue\n                dp[i][j][x] = (dp[i][j][x] + dp[i-1][j-durations[i]][y]) % (10**9 + 7)\n    ans = 0\n    for i in range(1, 4):\n        ans = (ans + dp[n-1][T][i]) % (10**9 + 7)\n    print(ans)\n\n\nmain()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 10.992579936981201,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

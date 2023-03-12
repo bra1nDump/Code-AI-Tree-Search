@@ -1,0 +1,74 @@
+{
+    "codes": [
+        "\nclass Songs:\n    def __init__(self, total, songs):\n        self.T = total\n        self.songs = songs\n        self.songs.sort(key=lambda s: s[0])\n        self.n = len(self.songs)\n        self.sums = [0]\n        for song in self.songs:\n            self.sums.append(self.sums[-1] + song[0])\n\n    def numPlaylists(self):\n        # The DP table. The value of dp[i][j] will be the number of playlists\n        # of length i that ends with a song in genre j.\n        dp = [[0] * 4 for _ in range(self.T + 1)]\n        dp[0][0] = 1\n        for i in range(1, self.T + 1):\n            for j in range(1, 4):\n                # The number of songs with duration i and genre j.\n                count = sum(1 for song in self.songs if song == (i, j))\n                # If there is no song with duration i and genre j, we cannot\n                # make a playlist of length i that ends with a song in genre j.\n                if not count:\n                    continue\n                # If there is no song with duration i - 1, we can only make a\n                # playlist of length i that ends with a song in genre j if there\n                # is only one song with duration i and genre j.\n                if i - 1 == 0:\n                    if count == 1:\n                        dp[i][j] = 1\n                # Otherwise, we can make a playlist of length i that ends with a\n                # song in genre j if we pair it with any playlist of length i - 1\n                # that does not end with a song in genre j.\n                else:\n                    dp[i][j] = count * dp[i - 1][j - 1]\n                # We can also make such a playlist if we pair the song with any\n                # playlist of length i - t where t is the duration of the song and\n                # we do not consider the last song.\n                for k in range(1, i - self.sums[count] + 1):\n                    dp[i][j] += dp[i - k][j]\n                # Subtract the number of invalid playlists.\n                for k in range(1, count):\n                    dp[i][j] -= dp[i - k][j - 1]\n        return sum(dp[self.T]) % (10 ** 9 + 7)\n\nif True:\n    n, T = map(int, input().split())\n    songs = [tuple(map(int, input().split())) for _ in range(n)]\n    print(Songs(T, songs).numPlaylists())"
+    ],
+    "rewards": [
+        0.43636363636363634
+    ],
+    "train rewards": [
+        0.4444444444444444
+    ],
+    "time": 12.519551038742065,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        [
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            true,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+        ]
+    ]
+}

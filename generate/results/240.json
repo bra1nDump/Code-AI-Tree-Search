@@ -1,0 +1,1 @@
+{"codes": ["s=input()\nss=input()\nfor i in range(len(s)):\n\tif s[i]!='0':\n\t\tss=ss+s[i]\n\t\tif i==len(s)-1:\n\t\t\tprint(int(ss))\n\t\t\tbreak\n"], "rewards": [0.0], "train rewards": [0.0], "time": [2.4275333881378174], "sample times": 1}

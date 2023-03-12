@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport itertools\nimport copy\n\n# --------------\n# User Instructions\n# \n# Write a function, longest_subpalindrome_slice(text) that takes \n# a string as input and returns the i and j indices that \n# correspond to the beginning and end indices of the longest \n# palindrome in the string. \n#\n# Grading Notes:\n# \n# You will only be marked correct if your function runs \n# efficiently enough. We will be measuring efficency by counting\n# the number of times you access each string. That count must be\n# below a certain threshold to be marked correct.\n#\n# Please do not use regular expressions to solve this quiz!\n\ndef longest_subpalindrome_slice(text):\n    \"Return (i, j) such that text[i:j] is the longest palindrome in text.\"\n    # Your code here\n    text = text.lower()\n    maxPal = (0, 0)\n    for i, _ in enumerate(text):\n        for j, _ in enumerate(text):\n            if i-j < 0:\n                continue\n            if text[i:j+1] == text[i:j+1][::-1]:\n                if maxPal[1] - maxPal[0] < j - i:\n                    maxPal = (i, j+1)\n    return maxPal\n\ndef test():\n    L = longest_subpalindrome_slice\n    assert L('racecar') == (0, 7)\n    assert L('Racecar') == (0, 7)\n    assert L('RacecarX') == (0, 7)\n    assert L('Race carr') == (7, 9)\n    assert L('') == (0, 0)\n    assert L('something rac e car going') == (8,21)\n    assert L('xxxxx') == (0, 5)\n    assert L('Mad am I ma dam.') == (0, 15)\n    return 'tests pass'\n\nprint(test())\n\n\n# --------------\n# User Instructions\n#\n# Write a function, findtags(text), that takes a string of text\n# as input and returns a list of all the html start tags in the \n# text. It may be helpful to use regular expressions to solve\n# this problem.\n\nimport re\n\ndef findtags(text):\n    # your code here\n    return re.findall(r'(<\\s*[^/][^>]*>)', text)\n\ntesttext1 = \"\"\"\nMy favorite website in the world is probably \n<a href=\"www.udacity.com\">Udacity</a>. If you want \nthat link to open in a <b>new tab</b> by default, you should\nwrite <a href=\"www.udacity.com\"target=\"_blank\">Udacity</a>\ninstead!\n\"\"\"\n\ntesttext2 = \"\"\"\nOkay, so you passed the first test case. <let's see> how you \nhandle this one. Did you know that 2 < 3 should return True? \nSo should 3 > 2. But 2 > 3 is always False.\n\"\"\"\n\ntesttext3 = \"\"\"\nIt's not common, but we can put a LOT of whitespace into \nour HTML tags. For example, we can make something bold by\ndoing <         b           > this <   /b    >, Though I \ndon't know why you would ever want to.\n\"\"\"\n\ndef test():\n    assert findtags(testtext1) == ['<a href=\"www.udacity.com\">', \n                                   '<b>', \n                                   '<a href=\"www.udacity.com\"target=\"_blank\">']\n    assert findtags(testtext2) == []\n    assert findtags(testtext3) == ['<         b           >']\n    return 'tests pass'\n\nprint(test())\n\n\n# --------------\n# User Instructions\n#\n# Write a function, compile_word(word), that compiles a word\n# of UPPERCASE letters as numeric digits. For example:\n# compile_word('YOU') => '(1*U + 10*O +100*Y)' \n# Non-uppercase words should remain unchaged.\n\ndef compile_word(word):\n    \"\"\"Compile a word of uppercase letters as numeric digits.\n    E.g., compile_word('YOU') => '(1*U+10*O+100*Y"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 17.426697969436646,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

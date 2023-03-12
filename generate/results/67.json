@@ -1,0 +1,1 @@
+{"codes": ["x, y, z = map(int, input().split())\n\nif z == 0:\n\tprint(\"+\")\nelif (x + y + z) % 2 == 0:\n\tprint(\"0\")\nelse:\n\tprint(\"+\")\n"], "rewards": [0.07017543859649122], "train rewards": [0.19298245614035087], "time": [2.251560926437378], "sample times": 1}

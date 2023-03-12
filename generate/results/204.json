@@ -1,0 +1,1 @@
+{"codes": ["a, b, x, y = list(map(int, input().split()))\nans = 0\nfor i in range(1, min(a, b) + 1):\n\tfor j in range(1, min(y, b) + 1):\n\t\tans += (y * i) // (b * j)\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.0557897090911865], "sample times": 1}

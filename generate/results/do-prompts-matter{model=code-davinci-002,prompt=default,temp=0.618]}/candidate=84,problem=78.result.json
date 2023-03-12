@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\ndef main():\n    # Input\n    n, T = map(int, input().split())\n    song_list = []\n    for i in range(n):\n        t, g = map(int, input().split())\n        song_list.append((t, g))\n\n    # Generate all possible playlists\n    playlist = []\n    generate_playlist(song_list, playlist, T)\n\n    # Check if playlist is valid\n    valid_playlist = []\n    for pl in playlist:\n        if is_valid_playlist(pl):\n            valid_playlist.append(pl)\n\n    # Generate all possible playlists\n    print(len(valid_playlist))\n\ndef generate_playlist(song_list, playlist, T):\n    if len(song_list) == 0:\n        return\n\n    for i in range(len(song_list)):\n        time = song_list[i][0]\n        if T - time < 0:\n            continue\n        else:\n            pl = []\n            pl.append(i+1)\n            if T - time == 0:\n                playlist.append(pl)\n            else:\n                new_song_list = song_list[:i] + song_list[i+1:]\n                generate_playlist(new_song_list, playlist, T - time)\n                for s in playlist:\n                    if is_valid_playlist(s):\n                        pl += s\n                        playlist.append(pl)\n                playlist.remove(pl)\n\ndef is_valid_playlist(playlist):\n    if len(playlist) == 1:\n        return True\n\n    for i in range(len(playlist) - 1):\n        if playlist[i][1] == playlist[i+1][1]:\n            return False\n    return True\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.05454545454545454
+    ],
+    "train rewards": [
+        0.25925925925925924
+    ],
+    "time": 7.773485898971558,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

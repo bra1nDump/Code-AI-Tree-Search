@@ -1,0 +1,1 @@
+{"codes": ["x1, y1, x2, y2 = list(map(int, input().split()))\n\ndef move(x1, y1, x2, y2):\n\treturn (x1 + x2) % 4, (y1 + y2) % 4\n\nnum = 0\nx1, y1, x2, y2 = move(x1, y1, x2, y2)\n\nwhile True:\n\tif x1 == x2:\n\t\tbreak\n\tnum += 1\n\nprint(num)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [4.1326048374176025], "sample times": 1}

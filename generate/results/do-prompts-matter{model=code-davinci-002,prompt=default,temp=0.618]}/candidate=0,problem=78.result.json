@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n\nimport time\n\ndef create_playlist(n, t, g):\n    if n == 1:\n        if t[0] == T:\n            return 1\n        else:\n            return 0\n    else:\n        res = 0\n        for i in range(n):\n            if i == 0:\n                res += create_playlist(n-1, t[1:], g[1:])\n            elif i == n-1:\n                res += create_playlist(n-1, t[:-1], g[:-1])\n            else:\n                res += create_playlist(n-1, t[:i] + t[i+1:], g[:i] + g[i+1:])\n        \n        return res\n\ndef create_playlist_memo(n, t, g):\n    if n == 1:\n        if t[0] == T:\n            return 1\n        else:\n            return 0\n    else:\n        res = 0\n        for i in range(n):\n            if i == 0:\n                if (n-1, tuple(t[1:]), tuple(g[1:])) not in memo:\n                    memo[(n-1, tuple(t[1:]), tuple(g[1:]))] = create_playlist_memo(n-1, t[1:], g[1:])\n                res += memo[(n-1, tuple(t[1:]), tuple(g[1:]))]\n            elif i == n-1:\n                if (n-1, tuple(t[:-1]), tuple(g[:-1])) not in memo:\n                    memo[(n-1, tuple(t[:-1]), tuple(g[:-1]))] = create_playlist_memo(n-1, t[:-1], g[:-1])\n                res += memo[(n-1, tuple(t[:-1]), tuple(g[:-1]))]\n            else:\n                if (n-1, tuple(t[:i] + t[i+1:]), tuple(g[:i] + g[i+1:])) not in memo:\n                    memo[(n-1, tuple(t[:i] + t[i+1:]), tuple(g[:i] + g[i+1:]))] = create_playlist_memo(n-1, t[:i] + t[i+1:], g[:i] + g[i+1:])\n                res += memo[(n-1, tuple(t[:i] + t[i+1:]), tuple(g[:i] + g[i+1:]))]\n        \n        return res\n\ndef create_playlist_dp(n, t, g):\n    dp = [[0 for i in range(T+1)] for j in range(n+1)]\n    dp[0][0] = 1\n    for i in range(1, n+1):\n        for j in range(T+1):\n            dp[i][j] = dp[i-1][j]\n            if j >= t[i-1]:\n                dp[i][j] += dp[i-1][j - t[i-1]]\n    return dp[n][T]\n\ndef create_playlist_dp_memo(n, t, g):\n    if (n, tuple(t), tuple(g)) in memo:\n        return memo[(n, tuple(t), tuple(g))]\n    \n    dp = [[0 for i in range(T+1)] for j in range(n+1)]\n    dp[0][0] = 1\n    for i in range(1, n+1):\n        for j in range(T+1):\n            dp[i][j] = dp[i-1][j]\n            if j >= t[i-1]:\n                dp[i][j] += dp[i-1][j - t[i-1]]\n    memo[(n, tuple(t), tuple(g))] = dp[n][T]\n    return memo[(n, tuple(t), tuple(g))]\n\ndef create_playlist_dp_memo_optimized(n, t, g):\n    if (n, tuple(t), tuple(g)) in memo:\n"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 18.679999351501465,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

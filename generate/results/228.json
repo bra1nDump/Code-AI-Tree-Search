@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\n\na.sort(reverse=True)\n\nans = \"Alice\" if sum(a[1:int(n/2)]) > n//2 else \"Bob\"\n\nprint(ans)\n"], "rewards": [0.7142857142857143], "train rewards": [0.6857142857142857], "time": [2.399746894836426], "sample times": 1}

@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport sys\n\ndef read_ints():\n    return list(map(int, sys.stdin.readline().strip().split(' ')))\n\ndef get_playlist_count(n, t, song_lengths, song_genres):\n    # Let's pad the song lengths with a 0 at the start to make indexing easier.\n    # This 0 is for the case where the first song doesn't play.\n    song_lengths = [0] + song_lengths\n\n    # Let's also pad the song genres with a 0 at the start to make indexing easier.\n    # This 0 is for the case where the first song doesn't play.\n    song_genres = [0] + song_genres\n\n    # Create a matrix of size (n+1) x (t+1) to store the number of playlists\n    # that can be created with the first i songs and d duration.\n    # The values of this matrix will be calculated bottom-up.\n    playlist_count = [[0] * (t+1) for _ in range(n+1)]\n\n    # The number of playlists that can be created with the first song and d\n    # duration is 1 if song_lengths[1] == d, and 0 otherwise.\n    for d in range(1, t+1):\n        playlist_count[1][d] = 1 if song_lengths[1] == d else 0\n\n    # Fill the rest of the matrix.\n    # The number of playlists that can be created with the first i songs and d\n    # duration is the sum of two terms.\n    #\n    # First term: the number of playlists that can be created with the first i\n    # songs and d-song_lengths[i] duration. This term is calculated by\n    # playlist_count[i][d-song_lengths[i]].\n    #\n    # Second term: the number of playlists that can be created with the first i\n    # songs and d duration and the i-th song plays last. This term is calculated\n    # with the help of another matrix.\n    #\n    # This new matrix has the same dimensions as playlist_count, and it stores\n    # the number of playlists that can be created with the first i songs and d\n    # duration, and the i-th song plays last.\n    for i in range(2, n+1):\n        for d in range(1, t+1):\n            playlist_count[i][d] = playlist_count[i][d-song_lengths[i]]\n\n            if d >= song_lengths[i]:\n                if song_genres[i-1] != song_genres[i]:\n                    playlist_count[i][d] += playlist_count[i-1][d-song_lengths[i]]\n\n    return playlist_count[n][t]\n\ndef main():\n    n, t = read_ints()\n    song_lengths = read_ints()\n    song_genres = read_ints()\n\n    print(get_playlist_count(n, t, song_lengths, song_genres))\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.01818181818181818
+    ],
+    "train rewards": [
+        0.09259259259259259
+    ],
+    "time": 14.892531394958496,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

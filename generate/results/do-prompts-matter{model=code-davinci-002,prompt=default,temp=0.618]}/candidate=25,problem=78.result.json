@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport sys\n\ndef main():\n    \"\"\"\n    The only difference between easy and hard versions is constraints.\n    \"\"\"\n    # parse input\n    n, T = [int(x) for x in sys.stdin.readline().strip().split()]\n    songs = [tuple(int(x) for x in sys.stdin.readline().strip().split()) for _ in range(n)]\n    assert(len(songs) == n)\n    assert(1 <= T <= 225)\n    assert(all(1 <= t <= 15 and 1 <= g <= 3 for t, g in songs))\n\n    # solve\n    num_playlists = solve(n, T, songs)\n\n    # output\n    print(num_playlists % (10**9 + 7))\n\ndef solve(n, T, songs):\n    \"\"\"\n    Solves this problem.\n    \"\"\"\n    # count the number of times each duration occurs\n    # and the number of times each genre occurs\n    duration_counts = [0 for _ in range(16)]\n    genre_counts = [0 for _ in range(4)]\n    for t, g in songs:\n        duration_counts[t] += 1\n        genre_counts[g] += 1\n\n    # count the number of durations that occur\n    num_durations = 0\n    for duration_count in duration_counts:\n        if duration_count > 0:\n            num_durations += 1\n\n    # count the number of genres that occur\n    num_genres = 0\n    for genre_count in genre_counts:\n        if genre_count > 0:\n            num_genres += 1\n\n    # if there are no songs, then the number of playlists\n    # is zero\n    if n == 0:\n        return 0\n\n    # if there is only one song, then the number of playlists\n    # is one iff its duration is T\n    if n == 1:\n        if songs[0][0] == T:\n            return 1\n        else:\n            return 0\n\n    # if there are two songs, then the number of playlists\n    # is the number of ways to choose the durations of the two\n    # songs, which is the product of the number of ways to choose\n    # each duration\n    if n == 2:\n        return duration_counts[T] * duration_counts[T]\n\n    # if there are three songs, then the number of playlists\n    # is the number of ways to choose the durations of the three\n    # songs, which is the product of the number of ways to choose\n    # each duration\n    if n == 3:\n        return duration_counts[T] * duration_counts[T] * duration_counts[T]\n\n    # if there are at least four songs, then the number of playlists\n    # is the sum of the number of playlists for each possible duration\n    # of the first song\n    num_playlists = 0\n    for i in range(1, T//2 + 1):\n        # the number of playlists with the first song of duration i\n        # is the number of ways to choose the genres of the first three\n        # songs, times the number of ways to choose the durations of the\n        # remaining songs, times the number of ways to choose the genres\n        # of the remaining songs\n        num_playlists += (genre_counts[1] * genre_counts[2] * genre_counts[3]) \\\n                         * (duration_counts[i] * duration_counts[T-i]) \\\n                         * solve(n - 2, T - i, songs[2:])\n\n    return num_playlists\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.10909090909090909
+    ],
+    "train rewards": [
+        0.46296296296296297
+    ],
+    "time": 16.535106897354126,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

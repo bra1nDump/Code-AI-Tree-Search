@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport sys\nsys.setrecursionlimit(10000) # Default limit is 1000\n\nimport re\nimport math\nimport itertools\n\ndef get_input(file):\n    lines = [line.rstrip('\\n') for line in open(file)]\n    n_t = re.split(r'\\s+', lines[0].rstrip('\\n'))\n    n = int(n_t[0])\n    t = int(n_t[1])\n    songs = []\n    for i in range(1, n+1):\n        song = re.split(r'\\s+', lines[i].rstrip('\\n'))\n        songs.append({'t':int(song[0]), 'g':int(song[1])})\n    return n, t, songs\n\ndef get_combinations_count(t, songs):\n    songs_by_length = {}\n    for song in songs:\n        if song['t'] in songs_by_length:\n            songs_by_length[song['t']].append(song)\n        else:\n            songs_by_length[song['t']] = [song]\n    songs_by_length_keys = sorted(songs_by_length.keys(), reverse=True)\n\n    count = 0\n    for i in range(1, len(songs_by_length_keys)+1):\n        for songs_set in itertools.combinations(songs_by_length_keys, i):\n            total_seconds = sum(songs_set)\n            if total_seconds == t:\n                songs_pool = []\n                for song_length in songs_set:\n                    songs_pool += songs_by_length[song_length]\n                songs_pool_combinations = itertools.permutations(songs_pool)\n                songs_pool_combinations_filtered = []\n                for songs_pool_combination in songs_pool_combinations:\n                    if check_combination(songs_pool_combination):\n                        songs_pool_combinations_filtered.append(songs_pool_combination)\n                count += len(songs_pool_combinations_filtered)\n    return count % (10**9 + 7)\n\ndef check_combination(songs):\n    for i in range(1, len(songs)):\n        if songs[i]['g'] == songs[i-1]['g']:\n            return False\n    return True\n\n\ndef main():\n    n, t, songs = get_input('input.txt')\n    print(get_combinations_count(t, songs))\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.5555555555555556
+    ],
+    "time": 11.482420921325684,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

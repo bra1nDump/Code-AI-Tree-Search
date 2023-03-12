@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nfrom collections import defaultdict\nfrom itertools import combinations\n\nT, n = map(int, input().split())\n\nsongs = []\ngenre_map = defaultdict(list)\n\nfor i in range(n):\n    t, g = map(int, input().split())\n    songs.append((t, g))\n    genre_map[g].append(t)\n\ndef get_all_combos(t, g):\n    combos = []\n    for i in range(1, t//min(genre_map[g]) + 1):\n        combos.extend(combinations(genre_map[g], i))\n    combos.append([t])\n    return combos\n\ndef get_all_subsets(t, g):\n    subsets = []\n    for i in range(1, t//min(genre_map[g]) + 1):\n        subsets.extend(combinations(genre_map[g], i))\n    return subsets\n\ndef reduce_subset(subset):\n    while len(subset) > 1:\n        if subset[0] == subset[1]:\n            subset.pop(0)\n        else:\n            break\n    return subset\n\ndef get_combos(t, g):\n    combos = []\n    subsets = get_all_subsets(t, g)\n    for i in range(len(subsets)):\n        if sum(subsets[i]) == t:\n            combos.append(subsets[i])\n        elif sum(subsets[i]) < t:\n            subset = reduce_subset(subsets[i])\n            if sum(subset) + min(genre_map[g]) <= t:\n                combos.extend(get_combos(t - sum(subset), g))\n    return combos\n\ndef remove_duplicates(combos):\n    for i in range(len(combos)):\n        for j in range(len(combos[i])):\n            combos[i][j] = tuple(combos[i][j])\n    combos = set(combos)\n    combos = [list(x) for x in combos]\n    return combos\n\ndef get_all_combos(t, g):\n    combos = get_combos(t, g)\n    combos = remove_duplicates(combos)\n    return combos\n\ndef get_combos(t, g):\n    combos = []\n    subsets = get_all_subsets(t, g)\n    for i in range(len(subsets)):\n        if sum(subsets[i]) == t:\n            combos.append(subsets[i])\n        elif sum(subsets[i]) < t:\n            subset = reduce_subset(subsets[i])\n            if sum(subset) + min(genre_map[g]) <= t:\n                combos.extend(get_combos(t - sum(subset), g))\n    return combos\n\ndef remove_duplicates(combos):\n    for i in range(len(combos)):\n        for j in range(len(combos[i])):\n            combos[i][j] = tuple(combos[i][j])\n    combos = set(combos)\n    combos = [list(x) for x in combos]\n    return combos\n\ndef get_all_combos(t, g):\n    combos = get_combos(t, g)\n    combos = remove_duplicates(combos)\n    return combos\n\ndef get_combos(t, g):\n    combos = []\n    subsets = get_all_subsets(t, g)\n    for i in range(len(subsets)):\n        if sum(subsets[i]) == t:\n            combos.append(subsets[i])\n        elif sum(subsets[i]) < t:\n            subset = reduce_subset(subsets[i])\n            if sum(subset) + min(genre_map[g]) <= t:\n                combos.extend(get_combos(t - sum(subset), g))\n    return combos\n\ndef remove_duplicates(combos):\n    for i in range(len(combos)):\n        for j in range(len(combos[i])):\n            combos[i][j] = tuple(combos[i][j])"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 19.95750904083252,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

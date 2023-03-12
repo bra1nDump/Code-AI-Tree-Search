@@ -1,0 +1,1 @@
+{"codes": ["def isPalindrome(s):\n\treturn s==s[::-1]\nn=input()\nif(isPalindrome(n)):\n\tprint(int(n[:2]))\nelse:\n\tprint(0)\n"], "rewards": [0.0], "train rewards": [0.025], "time": 2.7700629234313965, "sample times": 1}

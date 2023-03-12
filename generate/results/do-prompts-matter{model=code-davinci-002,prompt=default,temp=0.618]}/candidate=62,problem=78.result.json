@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\ndef main():\n    \"\"\"\n    0:15\n    0:30\n    1:00\n    1:15\n    1:30\n    2:00\n    2:15\n    2:30\n    3:00\n    3:15\n    3:30\n    4:00\n    4:15\n    4:30\n    5:00\n    \"\"\"\n    n, T = map(int, input().split())\n    songs = []\n    for _ in range(n):\n        songs.append(tuple(map(int, input().split())))\n    songs.sort()\n\n    dp = [[[0 for _ in range(4)] for _ in range(T + 1)] for _ in range(n)]\n\n    for i in range(4):\n        dp[0][songs[0][0]][i] = 1\n\n    for i in range(1, n):\n        for t in range(T + 1):\n            for g in range(4):\n                if t >= songs[i][0]:\n                    dp[i][t][g] = sum(dp[i - 1][t - songs[i][0]][g_i] for g_i in range(4))\n                else:\n                    dp[i][t][g] = 0\n                if g == songs[i][1]:\n                    dp[i][t][g] -= sum(dp[i - 1][t - songs[i][0]][g_i] for g_i in range(4) if g_i == g)\n    print(sum(dp[n - 1][T][g] for g in range(4)))\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.4
+    ],
+    "train rewards": [
+        0.2962962962962963
+    ],
+    "time": 5.865336179733276,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

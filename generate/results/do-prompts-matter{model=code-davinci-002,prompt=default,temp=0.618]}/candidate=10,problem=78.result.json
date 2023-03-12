@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport sys\nimport math\n\n# def get_input():\n#     n, T = map(int, sys.stdin.readline().split())\n#     song_list = []\n#     for i in range(n):\n#         t_i, g_i = map(int, sys.stdin.readline().split())\n#         song_list.append((t_i, g_i))\n#     return n, T, song_list\n\ndef get_input(file):\n    with open(file, 'r') as f:\n        n, T = map(int, f.readline().split())\n        song_list = []\n        for i in range(n):\n            t_i, g_i = map(int, f.readline().split())\n            song_list.append((t_i, g_i))\n        return n, T, song_list\n\ndef main():\n    # n, T, song_list = get_input()\n    n, T, song_list = get_input('rosalind_ba10b.txt')\n    # print(n, T, song_list)\n    modulo = 10**9 + 7\n    final_count = 0\n    # print(song_list)\n    # print(song_list[0])\n    genre = {}\n    for i in range(1, 4):\n        genre[i] = []\n    for i in range(n):\n        # print(song_list[i][1])\n        genre[song_list[i][1]].append(song_list[i][0])\n    # print(genre)\n\n    for i in range(1, 4):\n        # print(i, genre[i])\n        temp_count = 0\n        for j in range(len(genre[i])):\n            # print(genre[i][j])\n            temp_count += int(T/genre[i][j])\n        # print(temp_count)\n        if temp_count > 0:\n            final_count += int(math.factorial(temp_count) / (math.factorial(temp_count - len(genre[i])) * math.factorial(len(genre[i]))))\n    # print(final_count)\n    print(final_count % modulo)\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.01818181818181818
+    ],
+    "train rewards": [
+        0.1111111111111111
+    ],
+    "time": 10.827679872512817,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

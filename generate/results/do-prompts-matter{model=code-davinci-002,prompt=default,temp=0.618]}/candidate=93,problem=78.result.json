@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport sys\n\ndef main():\n    n, T = (int(x) for x in sys.stdin.readline().split())\n    songs = []\n    for i in range(n):\n        songs.append(tuple(int(x) for x in sys.stdin.readline().split()))\n    songs.sort()\n    choices = {}\n    for t, g in songs:\n        if (t, g) in choices:\n            continue\n        choices[t, g] = 1\n        for tt, gg in choices:\n            if tt + t <= T and gg != g:\n                choices[tt + t, g] = choices.get((tt + t, g), 0) + choices[tt, gg]\n    print(sum(choices.get((T, g), 0) for g in range(1, 4)))\n\nmain()"
+    ],
+    "rewards": [
+        0.12727272727272726
+    ],
+    "train rewards": [
+        0.35185185185185186
+    ],
+    "time": 3.539022207260132,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

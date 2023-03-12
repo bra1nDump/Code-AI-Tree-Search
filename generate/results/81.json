@@ -1,0 +1,1 @@
+{"codes": ["a, b = map(int, input().split())\nif a > b:\n\ta, b = b, a\nif a == b:\n\tprint(a)\nelse:\n\tprint(2)\n"], "rewards": [0.0], "train rewards": [0.018518518518518517], "time": [1.7832393646240234], "sample times": 1}

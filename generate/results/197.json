@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\n\np = 1000000007\n\nfor i in range(n):\n\tl, r = map(int, input().split())\n\tt = (r - l + 1) // 2\n\tc = ((r-l) // 2 + 1) * t\n\tp = (p * c) % p\n\nprint(p)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.111539125442505], "sample times": 1}

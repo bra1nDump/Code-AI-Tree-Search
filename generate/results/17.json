@@ -1,0 +1,1 @@
+{"codes": ["n, k, t = list(map(int, input().split()))\n\nans = 0\nfor i in range(1, n+1):\n\tans += (i-1)*(n-i+1)\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.0], "time": 3.143817663192749, "sample times": 1}

@@ -1,0 +1,1 @@
+{"codes": ["n, k, m = map(int, input().split())\nt = list(map(int, input().split()))\nt = sorted(t)\nc = 0\ns = 0\nfor i in range(n):\n\tif i + 1 == k:\n\t\ts += t[i]\n\telif i > k-1:\n\t\ts += t[i] + t[i+1]\n\tc += (s - t[i])\nprint(c)\n"], "rewards": [0.11904761904761904], "train rewards": [0.11904761904761904], "time": [3.964658260345459], "sample times": 1}

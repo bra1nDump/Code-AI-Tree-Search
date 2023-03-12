@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n\ndef solve(n, t, songs):\n    dp = [[[0 for _ in range(t + 1)] for _ in range(3)] for _ in range(n + 1)]\n    for i in range(1, n + 1):\n        for j in range(1, t + 1):\n            for k in range(3):\n                if j - songs[i][0] < 0:\n                    dp[i][j][k] = dp[i - 1][j][k]\n                else:\n                    if k == songs[i][1] - 1:\n                        dp[i][j][k] = dp[i - 1][j][k]\n                    else:\n                        if j - songs[i][0] == 0:\n                            dp[i][j][k] = dp[i - 1][j][k] + 1\n                        else:\n                            dp[i][j][k] = dp[i - 1][j][k] + dp[i - 1][j - songs[i][0]][songs[i][1] - 1]\n    return sum(dp[n][t]) % (10 ** 9 + 7)\n\n\ndef main():\n    n, t = map(int, input().split())\n    songs = [[0, 0]]\n    for i in range(n):\n        t_i, g_i = map(int, input().split())\n        songs.append([t_i, g_i])\n    print(solve(n, t, songs))\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.03636363636363636
+    ],
+    "train rewards": [
+        0.1111111111111111
+    ],
+    "time": 6.250626087188721,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

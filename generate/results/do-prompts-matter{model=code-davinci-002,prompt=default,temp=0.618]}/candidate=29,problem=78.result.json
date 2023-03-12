@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# Solution\ndef solve(n, t, songs):\n    \"\"\"\n    >>> solve(3, 3, [{'t': 1, 'g': 1}, {'t': 1, 'g': 2}, {'t': 1, 'g': 3}])\n    6\n    >>> solve(3, 3, [{'t': 1, 'g': 1}, {'t': 1, 'g': 1}, {'t': 1, 'g': 3}])\n    2\n    >>> solve(4, 10, [{'t': 5, 'g': 3}, {'t': 2, 'g': 1}, {'t': 3, 'g': 2}, {'t': 5, 'g': 1}])\n    10\n    \"\"\"\n    MOD = 10**9 + 7\n\n    # Count the number of ways to reach sum `t` using the first `i` songs,\n    # the last song played is `j`.\n    dp = [[[0 for _ in range(n)] for _ in range(t + 1)] for _ in range(n + 1)]\n\n    # Base case:\n    # dp[i][0][i] = 1 for all `i`\n    for i in range(n + 1):\n        dp[i][0][i] = 1\n\n    for i in range(1, n + 1):\n        for j in range(n):\n            for k in range(t + 1):\n                if songs[j]['t'] <= k:\n                    for l in range(n):\n                        if songs[j]['g'] != songs[l]['g']:\n                            dp[i][k][j] += dp[i - 1][k - songs[j]['t']][l]\n                            dp[i][k][j] %= MOD\n\n    return sum(dp[n][t]) % MOD\n\n\nif True:\n    n, t = map(int, input().split())\n    songs = []\n    for _ in range(n):\n        t_i, g_i = map(int, input().split())\n        songs.append({'t': t_i, 'g': g_i})\n\n    print(solve(n, t, songs))"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 8.774456262588501,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

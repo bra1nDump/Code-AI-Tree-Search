@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport sys\nimport math\nsys.setrecursionlimit(100000)\n\nclass Solution:\n    def __init__(self):\n        self.d = {}\n        self.m = 10 ** 9 + 7\n\n    def solve(self, nums, t):\n        if t < 0:\n            return 0\n        if t == 0:\n            return 1\n        if (t, nums) in self.d:\n            return self.d[(t, nums)]\n        ans = 0\n        for i in range(len(nums)):\n            ans += self.solve(nums[:i] + nums[i + 1:], t - nums[i][0])\n            ans %= self.m\n        self.d[(t, nums)] = ans\n        return ans\n\nif True:\n    n, t = [int(x) for x in input().split()]\n    nums = []\n    for i in range(n):\n        t1, g = [int(x) for x in input().split()]\n        nums.append((t1, g))\n    s = Solution()\n    print(s.solve(nums, t))"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 5.115264177322388,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

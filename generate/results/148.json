@@ -1,0 +1,1 @@
+{"codes": ["def main():\n\tn, a, x, b, y = list(map(int, input().split()))\n\ta -= 1\n\tb -= 1\n\tif (a == x and b == y):\n\t\tprint(\"YES\")\n\telse:\n\t\tprint(\"NO\")\n\n\ndef __starting_point():\n\tmain()\n\n__starting_point()\n"], "rewards": [0.3488372093023256], "train rewards": [0.6190476190476191], "time": [3.415869951248169], "sample times": 1}

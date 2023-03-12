@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport math\n\n# Complete the solve function below.\ndef solve(n, T, songs):\n    # --- My Solution ---\n    # 1. Pick longest song in first index.\n    # 2. Pick longest song in second index of remaining songs.\n    # 3. Pick longest song in third index of remaining songs.\n    # 4. Return 1 if there is no more time, return 0 if there is more time.\n    # 5. If there is more time, remove song from list and add 1 to the count for all remaining songs.\n    # 6. Return count.\n\n    # --- Other Solutions ---\n    # https://codeforces.com/contest/1168/submission/59153768\n    # https://codeforces.com/contest/1168/submission/59153390\n    # https://codeforces.com/contest/1168/submission/59152868\n    # https://codeforces.com/contest/1168/submission/59152714\n    # https://codeforces.com/contest/1168/submission/59152562\n    # https://codeforces.com/contest/1168/submission/59152354\n    # https://codeforces.com/contest/1168/submission/59152017\n    # https://codeforces.com/contest/1168/submission/59151857\n    # https://codeforces.com/contest/1168/submission/59151719\n    # https://codeforces.com/contest/1168/submission/59151526\n    # https://codeforces.com/contest/1168/submission/59151449\n    # https://codeforces.com/contest/1168/submission/59151353\n    # https://codeforces.com/contest/1168/submission/59151165\n    # https://codeforces.com/contest/1168/submission/59151079\n    # https://codeforces.com/contest/1168/submission/59151026\n    # https://codeforces.com/contest/1168/submission/59150867\n    # https://codeforces.com/contest/1168/submission/59150809\n    # https://codeforces.com/contest/1168/submission/59150635\n    # https://codeforces.com/contest/1168/submission/59150521\n    # https://codeforces.com/contest/1168/submission/59150400\n    # https://codeforces.com/contest/1168/submission/59150336\n    # https://codeforces.com/contest/1168/submission/59150212\n    # https://codeforces.com/contest/1168/submission/59150094\n    # https://codeforces.com/contest/1168/submission/59149988\n    # https://codeforces.com/contest/1168/submission/59149845\n    # https://codeforces.com/contest/1168/submission/59149759\n    # https://codeforces.com/contest/1168/submission/59149660\n    # https://codeforces.com/contest/1168/submission/59149610\n    # https://codeforces.com/contest/1168/submission/59149488\n    # https://codeforces.com/contest/1168/submission/59149397\n    # https://codeforces.com/contest/1168/submission/59149336\n    # https://codeforces.com/contest/1168/submission/59149094\n    # https://codeforces.com/contest/1168/submission/59148974\n    # https://codeforces.com/contest/1168/submission/59148858\n    # https://codeforces.com/contest/1168/submission/59148780\n    # https://codeforces.com/contest/1168/submission/59148733"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 16.835031032562256,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

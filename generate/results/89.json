@@ -1,0 +1,1 @@
+{"codes": ["n=int(input())\nif n<=3:\n\tprint(n)\nelse:\n\tprint(n*2-1)\n"], "rewards": [0.0392156862745098], "train rewards": [0.058823529411764705], "time": [1.2029588222503662], "sample times": 1}

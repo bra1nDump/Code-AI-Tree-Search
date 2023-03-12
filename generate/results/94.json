@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\nk = int(input())\n\np = 10**(len(str(n))) - 2\n\nh = n-p\n\nu = 0\n\nfor i in range(len(str(h))):\n\tif h[i] == '0':\n\t\tcontinue\n\tu += (10**i)*(base**i)\n\th = h[i+1:]\n\nprint(u)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.3871002197265625], "sample times": 1}

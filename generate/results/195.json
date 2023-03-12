@@ -1,0 +1,1 @@
+{"codes": ["a, b, c, n = map(int, input().split())\n\nif a * b * c == n:\n\tprint(-1)\nelse:\n\tprint(a + b + c - n)\n"], "rewards": [0.05263157894736842], "train rewards": [0.2894736842105263], "time": [2.064347505569458], "sample times": 1}

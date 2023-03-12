@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\nb = sum(a)\nans = sum(a)\nfor i in range(n):\n\tif a[i] > b:\n\t\tb -= a[i]\n\t\tans -= b\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [2.638408899307251], "sample times": 1}

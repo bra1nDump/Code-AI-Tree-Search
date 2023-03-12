@@ -1,0 +1,1 @@
+{"codes": ["l1, r1, l2, r2, k = list(map(int, input().split()))\na = l1 + r1 + l2 + r2\nb = l1 - r1\nc = l2 - r2\nprint(min(a, b, c))\n"], "rewards": [0.020833333333333332], "train rewards": [0.020833333333333332], "time": [2.3635776042938232], "sample times": 1}

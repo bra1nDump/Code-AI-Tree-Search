@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\n\nfor i in range(n):\n\tif a[i] >= a[i - 1]:\n\t\tprint(i + 1)\n"], "rewards": [0.1], "train rewards": [0.14285714285714285], "time": [1.9970314502716064], "sample times": 1}

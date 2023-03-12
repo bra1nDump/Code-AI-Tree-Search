@@ -1,0 +1,1 @@
+{"codes": ["s = input().split()\n\nm = int(s[0])\np = int(s[1])\ns = input().split()\n\nshuntsu = set()\nfor k in range(10):\n\tshuntsu.add(tuple(sorted(s[k])))\n\nmentsu = 0\nfor k in range(3):\n\tnum = k // 3\n\tmentsu += num * (num + 1) // 2\n\nprint(mentsu)\n"], "rewards": [0.0], "train rewards": [0.0], "time": 8.349457025527954, "sample times": 1}

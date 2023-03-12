@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\n\nfor i in range(n):\n\tk = (input())\n\tfor j in range(len(k)):\n\t\tif int(k[j]) < 9:\n\t\t\tprint(int(k[j]) - 1)\n\t\t\tbreak\n"], "rewards": [0.0], "train rewards": [0.0], "time": [2.2669296264648438], "sample times": 1}

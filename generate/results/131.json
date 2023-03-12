@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\nb = list(map(int, input().split()))\n\na.sort()\nb.sort()\n\nj = 0 \nfor i in range(n):\n\twhile a[j] < b[i]:\n\t\tj += 1\n\nif j * 2 == n:\n\tprint('Yes')\nelse:\n\tprint('No')\n\n"], "rewards": [0.043478260869565216], "train rewards": [0.08888888888888889], "time": [3.7443878650665283], "sample times": 1}

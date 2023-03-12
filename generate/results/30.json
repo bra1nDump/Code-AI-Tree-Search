@@ -1,0 +1,1 @@
+{"codes": ["m, x = list(map(int, input().split()))\n\nr = []\n\nfor i in range(m):\n\n\tif x % i == 0:\n\n\t\tbreak\n\tr.append(i + (x // i))\n\nprint(min(r))\n\n\n\n# Made By Mostafa_Khaled\n"], "rewards": [0.0], "train rewards": [0.0], "time": 3.5893032550811768, "sample times": 1}

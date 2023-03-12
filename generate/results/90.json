@@ -1,0 +1,1 @@
+{"codes": ["n, k, s = list(map(int, input().split()))\na = list(map(int, input().split()))\na = sorted(a)\nans = n * k\n\nfor i in range(n):\n\tj = i + s\n\tif j > k:\n\t\tbreak\n\tans += (j - i) * (j - i - 1) // 2\n\nprint(ans)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.4970176219940186], "sample times": 1}

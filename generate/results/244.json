@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\nx = list(map(int, input().split()))\n\nmid = (n - 1) // 2\n\nans = 1\n\nfor i in range(n):\n\tif x[i] == mid:\n\t\tans = i + 1\n\nprint(ans)\n"], "rewards": [0.029411764705882353], "train rewards": [0.0], "time": [2.5687615871429443], "sample times": 1}

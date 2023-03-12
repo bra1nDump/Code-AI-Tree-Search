@@ -1,0 +1,1 @@
+{"codes": ["s=input()\nif len(s)%2==0:\n\tprint(\"CHAT WITH HER!\")\nelse:\n\tprint(\"IGNORE HIM!\")\n"], "rewards": [0.5116279069767442], "train rewards": [0.5476190476190477], "time": [1.4896211624145508], "sample times": 1}

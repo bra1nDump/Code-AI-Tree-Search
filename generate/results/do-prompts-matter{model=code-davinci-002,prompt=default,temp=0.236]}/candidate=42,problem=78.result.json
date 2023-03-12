@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport sys\n\ndef main():\n    n, T = map(int, sys.stdin.readline().split())\n    songs = []\n    for i in range(n):\n        songs.append(list(map(int, sys.stdin.readline().split())))\n    songs.sort(key=lambda x: x[0])\n\n    # dp[i][j] = number of ways to make a playlist of length j using songs 0 through i\n    dp = [[0 for j in range(T+1)] for i in range(n)]\n    for i in range(n):\n        dp[i][0] = 1\n\n    for i in range(n):\n        for j in range(1, T+1):\n            if i > 0:\n                dp[i][j] = dp[i-1][j]\n            if j >= songs[i][0]:\n                dp[i][j] += dp[i][j-songs[i][0]]\n\n    # dp2[i][j] = number of ways to make a playlist of length j using songs 0 through i such that the last song is of genre j\n    dp2 = [[0 for j in range(T+1)] for i in range(n)]\n    for i in range(n):\n        dp2[i][0] = 1\n\n    for i in range(n):\n        for j in range(1, T+1):\n            if i > 0:\n                dp2[i][j] = dp2[i-1][j]\n            if j >= songs[i][0] and songs[i][1] == j:\n                dp2[i][j] += dp2[i][j-songs[i][0]]\n\n    # dp3[i][j] = number of ways to make a playlist of length j using songs 0 through i such that the last two songs are of genre j\n    dp3 = [[0 for j in range(T+1)] for i in range(n)]\n    for i in range(n):\n        dp3[i][0] = 1\n\n    for i in range(n):\n        for j in range(1, T+1):\n            if i > 0:\n                dp3[i][j] = dp3[i-1][j]\n            if j >= songs[i][0] and songs[i][1] == j:\n                dp3[i][j] += dp3[i][j-songs[i][0]]\n\n    ans = dp[n-1][T]\n    for i in range(1, 4):\n        ans -= dp2[n-1][i]\n    for i in range(1, 4):\n        ans += dp3[n-1][i]\n\n    print(ans)\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.07272727272727272
+    ],
+    "train rewards": [
+        0.12962962962962962
+    ],
+    "time": 16.327016830444336,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

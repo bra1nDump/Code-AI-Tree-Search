@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\ndef main():\n    num_songs, total_duration = map(int, input().split())\n    songs = [tuple(map(int, input().split())) for i in range(num_songs)]\n\n    def num_playlists(songs, total_duration):\n        if total_duration == 0: return 1\n\n        if songs == []: return 0\n\n        if (songs, total_duration) in memo: return memo[(songs, total_duration)]\n\n        num_playlists_without = num_playlists(songs[1:], total_duration)\n        num_playlists_with = 0\n\n        if total_duration - songs[0][0] >= 0:\n            num_playlists_with = num_playlists(songs[1:], total_duration - songs[0][0])\n\n        memo[(songs, total_duration)] = num_playlists_without + num_playlists_with\n        return memo[(songs, total_duration)]\n\n    memo = {}\n    answer = num_playlists(songs, total_duration)\n    print(answer)\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 6.4174721240997314,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

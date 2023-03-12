@@ -1,0 +1,1 @@
+{"codes": ["c,v0,v1,a,l=list(map(int,input().split()))\nif c!=v0:\n\tif c+a!=v1:\n\t\tprint(1+l)\n\telse:\n\t\tprint(v1//(c+a))\nelse:\n\tprint(v1//(c+a))\n"], "rewards": [0.18181818181818182], "train rewards": [0.16363636363636364], "time": [2.990128755569458], "sample times": 1}

@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport sys\nimport math\n\ndef get_n_choose_r(n, r, mod):\n\t\"\"\"\n\tReturns n choose r modulo mod.\n\t\"\"\"\n\tassert n >= r\n\tn_fact = 1\n\tr_fact = 1\n\tfor i in range(n, n - r, -1):\n\t\tn_fact *= i\n\tfor i in range(1, r + 1):\n\t\tr_fact *= i\n\treturn (n_fact // r_fact) % mod\n\ndef get_n_permute_r(n, r, mod):\n\t\"\"\"\n\tReturns n permute r modulo mod.\n\t\"\"\"\n\tassert n >= r\n\tn_fact = 1\n\tfor i in range(n, n - r, -1):\n\t\tn_fact *= i\n\t\tn_fact %= mod\n\treturn n_fact % mod\n\ndef get_n_permute_r_k_groups(n, r, k, mod):\n\t\"\"\"\n\tReturns n permute r with k groups modulo mod.\n\t\"\"\"\n\treturn (get_n_permute_r(n, r, mod) * get_n_choose_r(r - 1, k - 1, mod)) % mod\n\ndef get_n_permute_r_k_groups_no_adjacent(n, r, k, mod):\n\t\"\"\"\n\tReturns n permute r with k groups not adjacent modulo mod.\n\t\"\"\"\n\treturn (get_n_permute_r(n, r, mod) * get_n_choose_r(r - 1, k - 1, mod) * get_n_permute_r(k, k, mod)) % mod\n\ndef get_n_permute_r_k_groups_no_adjacent_no_repeats(n, r, k, mod):\n\t\"\"\"\n\tReturns n permute r with k groups not adjacent, not repeating modulo mod.\n\t\"\"\"\n\treturn (get_n_permute_r_k_groups_no_adjacent(n, r, k, mod) * get_n_permute_r(r, r, mod)) % mod\n\ndef get_n_permute_r_k_groups_no_adjacent_no_repeats_no_sequential(n, r, k, mod):\n\t\"\"\"\n\tReturns n permute r with k groups not adjacent, not repeating, not sequential modulo mod.\n\t\"\"\"\n\treturn (get_n_permute_r_k_groups_no_adjacent(n, r, k, mod) * get_n_permute_r(r, r, mod) * get_n_permute_r(k, k, mod)) % mod\n\ndef get_n_permute_r_k_groups_no_adjacent_no_repeats_no_sequential_no_same_genre(n, r, k, mod):\n\t\"\"\"\n\tReturns n permute r with k groups not adjacent, not repeating, not sequential, not same genre modulo mod.\n\t\"\"\"\n\treturn (get_n_permute_r_k_groups_no_adjacent_no_repeats_no_sequential(n, r, k, mod) * get_n_permute_r(k, k, mod)) % mod\n\ndef get_n_permute_r_k_groups_no_adjacent_no_repeats_no_sequential_no_same_genre_no_same_song(n, r, k, mod):\n\t\"\"\"\n\tReturns n permute r with k groups not adjacent, not repeating, not sequential, not same genre, not same song modulo mod.\n\t\"\"\"\n\treturn (get_n_permute_r_k_groups_no_adjacent_no_repeats_no_sequential_no_same_genre(n, r, k, mod) * get_n_permute_r(k, k, mod)) % mod\n\ndef get_n_permute_r_k_groups_no_adjacent_no_repeats_no_sequential_no_same_genre_no_same_song_no_same_song_order(n, r, k, mod):\n\t\"\"\"\n\tReturns n permute r with k groups not adjacent, not repeating, not sequential, not same genre, not same song, not same song order modulo"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 18.893826007843018,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

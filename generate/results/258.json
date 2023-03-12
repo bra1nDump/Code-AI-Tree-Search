@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\ns = input()\n\nt = [n for i in range(n)]\n\nfor i in range(n):\n\tif s[i] == '?':\n\t\tt[i] = 0\n\t\tcontinue\n\tt[i] = int(s[i])\n\nif sum(t) == 0:\n\tprint(\"Bicarp\")\nelse:\n\tprint(\"Monocarp\")\n"], "rewards": [0.9090909090909091], "train rewards": [0.5454545454545454], "time": [3.5963306427001953], "sample times": 1}

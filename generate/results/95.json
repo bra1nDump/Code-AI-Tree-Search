@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\n\nif n == 1:\n\tprint(\"YES\")\nelse:\n\tf = 0\n\tfor i in range(0, n-1):\n\t\tif a[i] < a[i+1]:\n\t\t\tf = 1\n\t\t\tbreak\n\tif f == 0:\n\t\tprint(\"YES\")\n\telse:\n\t\tprint(\"NO\")\n"], "rewards": [0.6078431372549019], "train rewards": [0.6], "time": [3.6609370708465576], "sample times": 1}

@@ -1,0 +1,1 @@
+{"codes": ["import math\n\nN,K = list(map(int,input().split()))\n\nX = list(map(int,input().split()))\nY = list(map(int,input().split()))\n\nc = 0\nfor i in range(N):\n\tc += X[i]*Y[i]\n\nv = math.sqrt(c)\n\nif(N>=v):\n\tprint(2.4)\nelse:\n\tprint(v+math.ceil(N/v))\n"], "rewards": [0.0], "train rewards": [0.0], "time": [4.168875694274902], "sample times": 1}

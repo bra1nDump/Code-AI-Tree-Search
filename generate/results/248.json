@@ -1,0 +1,1 @@
+{"codes": ["a, b, k, t = list(map(int, input().split()))\n\np = pow(b, k, mod)\n\nfor _ in range(t):\n\tif a + b < p:\n\t\tprint(0)\n\telse:\n\t\ta += p\n\t\tb += p\n\t\tif a > b:\n\t\t\tprint(a + b - 2)\n\t\telse:\n\t\t\tprint((a + b) - 1)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.8482234477996826], "sample times": 1}

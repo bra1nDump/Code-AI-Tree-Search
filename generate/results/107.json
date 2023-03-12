@@ -1,0 +1,1 @@
+{"codes": ["s=input()\nif(s.count('1')==s.count('0')):\n\tprint('yes')\nelse:\n\tprint('no')\n"], "rewards": [0.9387755102040817], "train rewards": [0.8571428571428571], "time": [1.3261134624481201], "sample times": 1}

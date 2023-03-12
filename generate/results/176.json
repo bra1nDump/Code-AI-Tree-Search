@@ -1,0 +1,1 @@
+{"codes": ["k, a, b = map(int, input().split())\nd = b // k\nans = (b - d * k) // k\nprint(ans)\n"], "rewards": [0.12195121951219512], "train rewards": [0.0], "time": [1.3235535621643066], "sample times": 1}

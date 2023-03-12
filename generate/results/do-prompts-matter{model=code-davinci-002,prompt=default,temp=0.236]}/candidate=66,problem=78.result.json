@@ -1,0 +1,75 @@
+{
+    "codes": [
+        "\n\ndef main():\n    n, T = map(int, input().split())\n    songs = []\n    for i in range(n):\n        songs.append(list(map(int, input().split())))\n    songs.sort()\n    # print(songs)\n\n    # dp[i][j] = number of ways to get to time j with song i\n    dp = [[0 for _ in range(T+1)] for _ in range(n)]\n    dp[0][songs[0][0]] = 1\n    for i in range(1, n):\n        for j in range(T+1):\n            if j >= songs[i][0]:\n                dp[i][j] = dp[i-1][j] + dp[i-1][j-songs[i][0]]\n            else:\n                dp[i][j] = dp[i-1][j]\n            if songs[i][1] == songs[i-1][1]:\n                dp[i][j] -= dp[i-2][j-songs[i][0]]\n    # print(dp)\n    print(dp[n-1][T])\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.34545454545454546
+    ],
+    "train rewards": [
+        0.35185185185185186
+    ],
+    "time": 5.0516228675842285,
+    "sample times": 2,
+    "test_rewards": [
+        [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+        ]
+    ],
+    "train_rewards": [
+        []
+    ]
+}

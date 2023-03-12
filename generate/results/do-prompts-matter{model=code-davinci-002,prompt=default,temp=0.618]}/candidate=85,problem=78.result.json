@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n#-------------------------------------------------------------------------------\n\ndef input_list():\n    \"\"\"\n    Reads a line of input as a list of integers.\n    \n    :return: the list of integers\n    \"\"\"\n    return [int(x) for x in input().split()]\n\ndef solve(n, T, songs):\n    \"\"\"\n    Solves the problem.\n    \n    :param n: the number of songs\n    :param T: the total duration\n    :param songs: a 2D array of the songs, where each row is a song (first\n                  element is the duration, second element is the genre)\n    :return: the number of different playlist sequences\n    \"\"\"\n    # The idea is to use dynamic programming.\n    # Let f[i][j] be the number of different playlist sequences of length i\n    # ending in a song of genre j.\n    # Then f[i][j] = f[i - 1][1] + f[i - 1][2] + f[i - 1][3] - f[i - 1][j]\n    # if the last song is not the same genre as the song before it, and\n    # f[i][j] = f[i - 1][j] otherwise.\n    # The array f is not needed, but it is useful for understanding the\n    # solution.\n    # The solution is f[T][1] + f[T][2] + f[T][3]\n    # The base case is f[0][j] = 1 for all j.\n    f = [[0 for j in range(4)] for i in range(T + 1)]\n    for j in range(4):\n        f[0][j] = 1\n    for i in range(1, T + 1):\n        for j in range(1, 4):\n            if songs[i - 1][1] != j:\n                f[i][j] = (f[i - 1][1] + f[i - 1][2] + f[i - 1][3]\n                           - f[i - 1][j])\n            else:\n                f[i][j] = f[i - 1][j]\n    return (f[T][1] + f[T][2] + f[T][3]) % (10**9 + 7)\n\n#-------------------------------------------------------------------------------\n\ndef main():\n    n, T = input_list()\n    songs = [input_list() for i in range(n)]\n    print(solve(n, T, songs))\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.018518518518518517
+    ],
+    "time": 12.72140884399414,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

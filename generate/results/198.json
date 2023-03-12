@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\nif n % 2 == 0:\n\tprint(0)\nelse:\n\tprint(n//2+1)\n"], "rewards": [0.0], "train rewards": [0.05263157894736842], "time": [1.3828041553497314], "sample times": 1}

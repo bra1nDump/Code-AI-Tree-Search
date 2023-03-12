@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# Solution 1\ndef solve(n, t, songs):\n    dp = [[[0] * 4 for _ in range(t + 1)] for _ in range(n + 1)]\n    dp[0][0] = [1] * 4\n    for i in range(1, n + 1):\n        for j in range(t + 1):\n            for k in range(1, 4):\n                if j - songs[i][0] >= 0:\n                    dp[i][j][k] = dp[i - 1][j][k] + dp[i - 1][j - songs[i][0]][k]\n                else:\n                    dp[i][j][k] = dp[i - 1][j][k]\n                if songs[i][1] == k:\n                    dp[i][j][k] -= dp[i - 1][j - songs[i][0]][k]\n    return dp[n][t][1] + dp[n][t][2] + dp[n][t][3]\n\nn, t = map(int, input().split())\nsongs = [[0, 0]]\nfor i in range(n):\n    songs.append(list(map(int, input().split())))\nprint(solve(n, t, songs))\n\n# Solution 2\ndef solve(n, t, songs):\n    dp = [[[0] * 4 for _ in range(t + 1)] for _ in range(n + 1)]\n    dp[0][0] = [1] * 4\n    for i in range(1, n + 1):\n        for j in range(t + 1):\n            for k in range(1, 4):\n                if j - songs[i][0] >= 0:\n                    dp[i][j][k] = dp[i - 1][j][k] + dp[i - 1][j - songs[i][0]][k]\n                else:\n                    dp[i][j][k] = dp[i - 1][j][k]\n                if songs[i][1] == k:\n                    dp[i][j][k] -= dp[i - 1][j - songs[i][0]][k]\n    return dp[n][t][1] + dp[n][t][2] + dp[n][t][3]\n\nn, t = map(int, input().split())\nsongs = [[0, 0]]\nfor i in range(n):\n    songs.append(list(map(int, input().split())))\nprint(solve(n, t, songs))"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 11.818337202072144,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

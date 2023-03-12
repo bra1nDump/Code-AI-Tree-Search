@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# Solution\n\n# This solution is based on the following observation:\n# Let's say we have a playlist of length T.\n# If we have a song of length t, we can add it to the playlist if T - t >= 0.\n# If we have a song of length t and genre g, we can add it to the playlist if T - t >= 0 and the previous song is not of genre g.\n\n# This solution is a dynamic programming solution.\n# We have a 3D array, where the first dimension is the length of the playlist, the second dimension is the genre of the last song, and the third dimension is the number of songs in the playlist.\n# The value of the array is the number of playlists of the given length, genre, and number of songs.\n# We can calculate the value of the array by looking at the previous values.\n\n# The time complexity is O(T * n * 3), where T is the total length of the playlist and n is the number of songs.\n# The space complexity is O(T * 3).\n\n# The following solution is based on the solution of the problem \"Music playlist\" from the Russian Olympiad in Informatics.\n\nMOD = 10 ** 9 + 7\n\ndef solve(n, T, songs):\n    dp = [[[0 for _ in range(n + 1)] for _ in range(4)] for _ in range(T + 1)]\n    dp[0][0][0] = 1\n    for t in range(T + 1):\n        for g in range(4):\n            for k in range(n + 1):\n                for song in songs:\n                    if t - song[0] >= 0 and g != song[1]:\n                        dp[t][song[1]][k + 1] += dp[t - song[0]][g][k]\n                        dp[t][song[1]][k + 1] %= MOD\n    return sum(dp[T][g][n] for g in range(4)) % MOD\n\nif True:\n    n, T = map(int, input().split())\n    songs = []\n    for _ in range(n):\n        t, g = map(int, input().split())\n        songs.append((t, g))\n    print(solve(n, T, songs))"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.05555555555555555
+    ],
+    "time": 8.402570009231567,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

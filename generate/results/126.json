@@ -1,0 +1,1 @@
+{"codes": ["n = input()\nm = input()\n\nif n == m:\n\tprint(\"YES\")\nelse:\n\tprint(\"NO\")\n"], "rewards": [0.6170212765957447], "train rewards": [0.7391304347826086], "time": [1.3705103397369385], "sample times": 1}

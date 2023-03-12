@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport itertools\n\ndef main():\n    # read parameters\n    n, t = (int(x) for x in input().split())\n    songs = [(int(x), int(y)) for x, y in input().split()]\n    # create a list of all possible combinations\n    combinations = [x for x in itertools.combinations(songs, n)]\n    # count combinations\n    count = 0\n    for combination in combinations:\n        count += 1 if sum(x[0] for x in combination) == t else 0\n\n    print(count)\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 3.002423048019409,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

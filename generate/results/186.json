@@ -1,0 +1,1 @@
+{"codes": ["n, m = map(int, input().split())\nif n < 3:\n\tprint(0)\nelse:\n\tprint(max(n-1, 3 * (n // 3) + 2))\n"], "rewards": [0.0], "train rewards": [0.0], "time": [1.7707412242889404], "sample times": 1}

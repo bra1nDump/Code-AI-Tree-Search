@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# Solution\n\n# This solution is based on the idea that we can use dynamic programming to solve this problem.\n# We will use a 2D array to store the number of playlists that can be created with the first i songs and a total duration of j.\n# We will use the following recurrence relation to fill the array:\n# dp[i][j] = dp[i-1][j] + dp[i-1][j-t[i]] + dp[i-1][j-2*t[i]] + ... + dp[i-1][j-k*t[i]]\n# where k is the maximum number of times the ith song can be repeated in the playlist.\n# We can use the following recurrence relation to calculate k:\n# k = (j - (j % t[i])) / t[i]\n# We can also use the following recurrence relation to calculate the number of playlists that can be created with the first i songs and a total duration of j:\n# dp[i][j] = dp[i-1][j] + dp[i-1][j-t[i]] + dp[i-1][j-2*t[i]] + ... + dp[i-1][j-k*t[i]] - dp[i-2][j-t[i]] - dp[i-2][j-2*t[i]] - ... - dp[i-2][j-k*t[i]]\n# This is because we don't want to count the playlists that have two consecutive songs of the same genre.\n# We can use the following recurrence relation to calculate the number of playlists that can be created with the first i songs and a total duration of j:\n# dp[i][j] = dp[i-1][j] + dp[i-1][j-t[i]] + dp[i-1][j-2*t[i]] + ... + dp[i-1][j-k*t[i]] - dp[i-2][j-t[i]] - dp[i-2][j-2*t[i]] - ... - dp[i-2][j-k*t[i]]\n# This is because we don't want to count the playlists that have two consecutive songs of the same genre.\n# We can use the following recurrence relation to calculate the number of playlists that can be created with the first i songs and a total duration of j:\n# dp[i][j] = dp[i-1][j] + dp[i-1][j-t[i]] + dp[i-1][j-2*t[i]] + ... + dp[i-1][j-k*t[i]] - dp[i-2][j-t[i]] - dp[i-2][j-2*t[i]] - ... - dp[i-2][j-k*t[i]]\n# This is because we don't want to count the playlists that have two consecutive songs of the same genre.\n# We can use the following recurrence relation to calculate the number of playlists that can be created with the first i songs and a total duration of j:\n# dp[i][j] = dp[i-1][j] + dp[i-1][j-t[i]] + dp[i-1][j-2*t[i]] + ... + dp[i-1][j-k*t[i]] - dp[i-2][j-t[i]] - dp[i-2][j-2*t[i]] - ... - dp[i-2][j-k*t[i]]\n# This is because we don't want to count the playlists that have two consecutive songs of the same genre.\n# We can use the following recurrence relation to calculate the number of playlists that can be created with the first i songs and a total duration of j:\n# dp[i][j] = dp[i-1][j] + dp[i-1][j-t[i]] + dp[i-1][j-2*t[i]] + ... + dp[i-1][j-k*t[i]] - dp[i-2][j-t[i]] - dp[i-2][j-2*t[i]] - ... - dp[i-2][j"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 17.095675945281982,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

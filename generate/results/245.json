@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\nfor i in range(n):\n\tx1, y1, x2, y2 = map(int, input().split())\n\tif x1 == x2 or y1 == y2:\n\t\tprint('YES')\n\telse:\n\t\tprint('NO')\n"], "rewards": [0.7941176470588235], "train rewards": [0.6764705882352942], "time": [2.452155113220215], "sample times": 1}

@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# Solution 1: backtracking\n# Time complexity: O(3^n)\n\n# def createPlaylist(arr, T, n, a, b, c, d):\n# \tif T == 0 and len(d) == n: # len(d) is the number of songs in the playlist\n# \t\ta.append(d)\n# \t\treturn\n# \tif T < 0 or len(d) == n:\n# \t\treturn\n# \tif len(b) > 0:\n# \t\tcreatePlaylist(arr, T, n, a, b[1:], c, d + [b[0]])\n# \tif len(c) > 0:\n# \t\tcreatePlaylist(arr, T, n, a, b, c[1:], d + [c[0]])\n\n# for _ in range(int(input())):\n# \tn, T = map(int, input().split())\n# \tarr = []\n# \tfor i in range(n):\n# \t\tt, g = map(int, input().split())\n# \t\tarr.append([t, g])\n# \ta = []\n# \tcreatePlaylist(arr, T, n, a, arr, arr, [])\n# \tprint(len(set(tuple(l) for l in a)))\n\n# Solution 2: dynamic programming\n# Time complexity: O(nT)\n\nfor _ in range(int(input())):\n\tn, T = map(int, input().split())\n\tarr = []\n\tfor i in range(n):\n\t\tt, g = map(int, input().split())\n\t\tarr.append([t, g])\n\tdp = [[[0 for _ in range(T + 1)] for _ in range(4)] for _ in range(n + 1)]\n\tfor i in range(n + 1):\n\t\tdp[i][0][0] = 1\n\tfor j in range(1, n + 1):\n\t\tfor k in range(1, 4):\n\t\t\tfor l in range(1, T + 1):\n\t\t\t\tif arr[j - 1][1] != k:\n\t\t\t\t\tdp[j][k][l] = dp[j - 1][k][l]\n\t\t\t\tif arr[j - 1][0] <= l:\n\t\t\t\t\tdp[j][k][l] += dp[j - 1][arr[j - 1][1]][l - arr[j - 1][0]]\n\tprint(dp[n][3][T])"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 10.450325965881348,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

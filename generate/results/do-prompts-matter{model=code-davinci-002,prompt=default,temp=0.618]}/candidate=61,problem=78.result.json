@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# from math import prod\n\n# def prod(iterable):\n#     return reduce(operator.mul, iterable, 1)\n\ndef num_playlists(songs, total_time):\n  \"\"\"\n  Dynamic programming solution.\n  \"\"\"\n  # Sort songs by length.\n  songs.sort()\n  # Init DP array.\n  arr = [[0] * (total_time + 1) for _ in range(len(songs))]\n  # Fill in first row.\n  song_length = songs[0][0]\n  song_genre = songs[0][1]\n  # Fill in first row.\n  arr[0][song_length] = 1\n  # Fill in first column.\n  for i in range(1, len(songs)):\n    if songs[i][1] != song_genre:\n      arr[i][0] = 1\n  # Fill in rest of DP array.\n  for i in range(1, len(songs)):\n    for j in range(total_time + 1):\n      song_length = songs[i][0]\n      song_genre = songs[i][1]\n      # Add up all valid playlists with current song at the end.\n      for k in range(j - song_length, -1, -1):\n        if songs[i-1][1] != song_genre:\n          arr[i][j] += arr[i-1][k]\n      # Add up all valid playlists without current song at the end.\n      arr[i][j] += arr[i-1][j]\n  # Return last element.\n  return arr[len(songs)-1][total_time]\n\n\ndef num_playlists2(songs, total_time):\n  \"\"\"\n  Recursive solution.\n  \"\"\"\n  def helper(songs, total_time, last_genre):\n    # Base cases.\n    if total_time < 0:\n      return 0\n    if total_time == 0:\n      return 1\n    # Init result.\n    result = 0\n    for i in range(len(songs)):\n      # If song and last song are not of same genre.\n      if songs[i][1] != last_genre:\n        # Recurse.\n        result += helper(songs, total_time - songs[i][0], songs[i][1])\n    return result\n  # Init cache.\n  cache = {}\n  # Recurse.\n  return helper(songs, total_time, 0)\n\ndef main():\n  # Get input.\n  n, T = [int(x) for x in input().split()]\n  songs = []\n  for _ in range(n):\n    song = [int(x) for x in input().split()]\n    songs.append(song)\n  # Compute and print result.\n  print(num_playlists2(songs, T))\n\nif True:\n  main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 11.686764001846313,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

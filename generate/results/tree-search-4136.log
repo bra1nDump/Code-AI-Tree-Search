@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/kirilldubovitskiy/projects/Code-AI-Tree-Search/generate/uct.py", line 45, in uct_exp
+    agent.act(env, done, term_cond=term_cond)
+  File "/Users/kirilldubovitskiy/projects/Code-AI-Tree-Search/generate/../dyna_gym/agents/uct.py", line 109, in act
+    opt_act, self.root = mcts.mcts_procedure(self, self.tree_policy, env, done, root=root, rollout_weight=rollout_weight, term_cond=term_cond)
+  File "/Users/kirilldubovitskiy/projects/Code-AI-Tree-Search/generate/../dyna_gym/agents/mcts.py", line 133, in mcts_procedure
+    estimate = env.get_reward(state)
+  File "/Users/kirilldubovitskiy/projects/Code-AI-Tree-Search/generate/program_env.py", line 145, in get_reward
+    raise Exception("Reward not gained :D")
+Exception: Reward not gained :D
+

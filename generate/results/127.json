@@ -1,0 +1,1 @@
+{"codes": ["from sys import stdin\nn,f=list(map(int,stdin.readline().split()))\nl=list(map(int,stdin.readline().split()))\nl.sort()\nc=0\ni=0\nwhile(i<n):\n\tif i+f>n:\n\t\tbreak\n\tif l[i]*2>=l[i+1]:\n\t\tc+=1\n\t\tl[i]=l[i]*2\n\t\ti+=1\n\telse:\n\t\ti+=1\nprint(c)\n"], "rewards": [0.0], "train rewards": [0.021739130434782608], "time": [4.911014556884766], "sample times": 1}

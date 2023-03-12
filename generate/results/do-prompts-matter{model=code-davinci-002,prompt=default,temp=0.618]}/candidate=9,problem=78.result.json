@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport functools\nimport functools\n\n# Helper functions\ndef memoize(f):\n    \"\"\" Memoization decorator for a function taking one or more arguments. \"\"\"\n    class memodict(dict):\n        def __init__(self, f):\n            self.f = f\n        def __call__(self, *args):\n            return self[args]\n        def __missing__(self, key):\n            ret = self[key] = self.f(*key)\n            return ret\n    return memodict(f)\n\ndef memoize(func):\n    cache = {}\n    @functools.wraps(func)\n    def memoizer(*args, **kwargs):\n        key = str(args) + str(kwargs)\n        if key not in cache:\n            cache[key] = func(*args, **kwargs)\n        return cache[key]\n    return memoizer\n\ndef read_int():\n    return int(input())\n\ndef read_int_map():\n    return map(int, input().split(' '))\n\ndef read_int_list():\n    return list(map(int, input().split(' ')))\n\ndef read_str():\n    return input()\n\ndef read_char_list():\n    return list(read_str())\n\ndef write_case_ans(i, ans):\n    if isinstance(ans, list):\n        ans = ' '.join([str(a) for a in ans])\n    print('Case #%d: %s' % (i, ans))\n\ndef read_int_matrix():\n    return [list(map(int, input().split(' '))) for _ in range(N)]\n\n######################################################\n\ndef get_genres_dict(n, t, g):\n    genres_dict = {}\n    for i in range(n):\n        if g[i] not in genres_dict:\n            genres_dict[g[i]] = []\n        genres_dict[g[i]].append((t[i], i))\n    return genres_dict\n\n@memoize\ndef get_num_playlists(n, t, g, t_rem, genres_dict):\n    if t_rem == 0:\n        # Base case\n        return 1\n    if n == 0:\n        # Base case\n        return 0\n    num_playlists = 0\n    for genre, song_list in genres_dict.items():\n        for song_t, song_i in song_list:\n            if song_t > t_rem:\n                # song is too long for remaining time\n                continue\n            # try to add this song\n            genres_dict_copy = genres_dict.copy()\n            genres_dict_copy[genre].remove((song_t, song_i))\n            if len(genres_dict_copy[genre]) == 0:\n                del genres_dict_copy[genre]\n            num_playlists += get_num_playlists(n-1, t, g, t_rem-song_t, genres_dict_copy)\n    return num_playlists\n\nif True:\n    n, t = read_int_map()\n    t = list(t)\n    g = list(read_int_map())\n    genres_dict = get_genres_dict(n, t, g)\n    ans = get_num_playlists(n, t, g, t, genres_dict)\n    print(ans)"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 14.22287631034851,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

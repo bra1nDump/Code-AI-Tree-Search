@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport math\nimport sys\n\nmod = 10**9 + 7\n\ndef input():\n    return sys.stdin.readline()\n\ndef get_input(n):\n    arr = [int(i) for i in input().split()]\n    return arr[:n]\n\ndef get_n_input(n):\n    arr = []\n    for i in range(n):\n        arr.append(int(input()))\n    return arr\n\ndef print_dp(dp):\n    for row in dp:\n        print(row)\n\ndef dp(arr, n, t):\n    # dp[i][j][k] is the number of ways to make a playlist of length j,\n    # ending with song i, genre k\n    dp = [[[0 for i in range(3)] for i in range(t+1)] for i in range(n)]\n    # dp[i][j] is the number of ways to make a playlist of length j,\n    # ending with song i\n    dp2 = [[0 for i in range(t+1)] for i in range(n)]\n\n    for i in range(n):\n        # initialize the first song\n        dp[i][arr[i][0]][arr[i][1]-1] = 1\n        dp2[i][arr[i][0]] = 1\n        for j in range(t+1):\n            for k in range(3):\n                if j-arr[i][0] >= 0:\n                    # add the current song to a playlist that ends with\n                    # song i-1, genre k\n                    dp[i][j][k] = dp[i-1][j-arr[i][0]][k]\n                    # add the current song to a playlist that ends with\n                    # song i-1\n                    dp2[i][j] += dp2[i-1][j-arr[i][0]]\n                    if k != arr[i][1]-1:\n                        # add the current song to a playlist that ends with\n                        # song i-1, genre k, and subtract the song after the\n                        # current song is the same genre\n                        dp[i][j][k] -= dp[i-1][j-arr[i][0]-arr[i][0]][arr[i][1]-1]\n                        # add the current song to a playlist that ends with\n                        # song i-1, and subtract the song after the\n                        # current song is the same genre\n                        dp2[i][j] -= dp2[i-1][j-arr[i][0]-arr[i][0]]\n                    dp[i][j][k] %= mod\n                    dp2[i][j] %= mod\n    #print_dp(dp)\n    #print('')\n    #print_dp(dp2)\n    return dp2[n-1][t]\n\nn, t = get_input(2)\narr = []\nfor i in range(n):\n    arr.append(get_input(2))\n\nprint(dp(arr, n, t))"
+    ],
+    "rewards": [
+        0.23636363636363636
+    ],
+    "train rewards": [
+        0.2037037037037037
+    ],
+    "time": 11.808635234832764,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

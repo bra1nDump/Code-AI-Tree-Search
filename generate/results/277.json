@@ -1,0 +1,1 @@
+{"codes": ["n, a, b = map(int, input().split())\n\nif a > b:\n\ta, b = b, a\n\nfor i in range(n):\n\tif a & 1 and b & 1:\n\t\tcontinue\n\telif a & 1:\n\t\tb -= 2\n\telif b & 1:\n\t\ta -= 2\n\telse:\n\t\ta -= 1\n\nif a == b:\n\tprint(n)\nelse:\n\tprint(n + 1)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [4.085036516189575], "sample times": 1}

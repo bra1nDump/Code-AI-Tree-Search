@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = [set() for _ in range(6)]\nfor _ in range(n):\n\ts = input()\n\tfor c in s.split():\n\t\ta[c - {'p': '', 't':'', 'i':'', 'r':'', 'q':'', 'p':'', 'o':'', 'n':'', 'z':''}[c[0]]].add(c[1:])\nprint(len(a))\nfor c in a:\n\tprint(' '.join(c))\n"], "rewards": [0.0], "train rewards": [0.0], "time": [4.436649322509766], "sample times": 1}

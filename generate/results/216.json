@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\n\nsums = [0 for i in range(n+1)]\nsums[0] = a[0]\nfor i in range(1, n+1):\n\tsums[i] = sums[i-1] + a[i]\n\nmax_sum = 0\nfor i in range(1, n+1):\n\tmax_sum = max(max_sum, sums[i] - sums[i-1])\n\nprint(max_sum)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [4.293346881866455], "sample times": 1}

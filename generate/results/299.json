@@ -1,0 +1,1 @@
+{"codes": ["n=int(input())\na=list(map(int,input().split()))\na=sorted(a)\nif a[0]==a[n-1]:\n\tprint('back')\nelse:\n\tprint('chest')\n"], "rewards": [0.3225806451612903], "train rewards": [0.6], "time": [2.1715476512908936], "sample times": 1}

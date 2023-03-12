@@ -1,0 +1,1 @@
+{"codes": ["x, y, z = list(map(int, input().split()))\na, b, c = list(map(int, input().split()))\n\na = min(a, b)\nb = min(b, c)\nc = min(c, a)\n\nif a + b + c == z:\n\tprint(\"YES\")\nelse:\n\tprint(\"NO\")\n"], "rewards": [0.574468085106383], "train rewards": [0.5531914893617021], "time": [3.3249282836914062], "sample times": 1}

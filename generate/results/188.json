@@ -1,0 +1,1 @@
+{"codes": ["n, k = map(int, input().split())\na = list(map(int, input().split()))\na = sorted(a)\n\np = [-1 for i in range(n)]\n\nfor i in range(n):\n\tif i and a[i]!= p[i]:\n\t\tp[i] = a[i]\n\nans = \"YES\" if (n - k) % 2 == 0 else \"NO\"\n\nprint(ans)\n"], "rewards": [0.5128205128205128], "train rewards": [0.23076923076923078], "time": [3.917039632797241], "sample times": 1}

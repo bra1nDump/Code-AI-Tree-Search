@@ -1,0 +1,1 @@
+{"codes": ["a=int(input())\nb=int(input())\n\nif a>b:\n\tprint('>')\nelif a<b:\n\tprint('<')\nelse:\n\tprint('=')\n"], "rewards": [1.0], "train rewards": [1.0], "time": [1.8287582397460938], "sample times": 1}

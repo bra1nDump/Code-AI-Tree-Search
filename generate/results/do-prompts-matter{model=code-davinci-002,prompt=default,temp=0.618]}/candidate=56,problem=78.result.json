@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n\ndef f(n, t, songs, dp):\n    if n == 0 and t == 0:\n        return 1\n    if n == 0 or t == 0:\n        return 0\n    if dp[n][t]:\n        return dp[n][t]\n\n    def solve(t, genre):\n        if t == 0:\n            return 1\n        if t < 0:\n            return 0\n        return sum([f(n - 1, t - songs[i][0], songs[:i] + songs[i + 1:], dp)\n                    for i in range(len(songs)) if songs[i][1] != genre])\n\n    dp[n][t] = solve(t, 0) - solve(t, 1) - solve(t, 2) - solve(t, 3)\n    return dp[n][t]\n\n\ndef main():\n    n, t = (int(x) for x in input().split())\n    songs = [[int(x) for x in input().split()] for _ in range(n)]\n    dp = [[0] * (t + 1) for _ in range(n + 1)]\n    print(f(n, t, songs, dp) % (10 ** 9 + 7))\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.35185185185185186
+    ],
+    "time": 6.409949064254761,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

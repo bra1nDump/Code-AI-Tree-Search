@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# Solution\n\n# Solution 1\n\n# This solution is based on the idea of dynamic programming.\n# Let's consider the problem of finding the number of playlists of length $k$ that end with the $i$-th song.\n# Let's denote the number of such playlists as $dp[i][k]$.\n# We can calculate $dp[i][k]$ using the following formula:\n# $dp[i][k] = \\sum_{j=1}^{i-1} dp[j][k-1]$ if $g_i \\ne g_j$\n# $dp[i][k] = 0$ otherwise\n# The answer is the sum of all $dp[i][k]$ for $i = 1, 2, \\dots, n$ and $k = T$.\n\n# Solution 2\n\n# This solution is based on the idea of dynamic programming.\n# Let's consider the problem of finding the number of playlists of length $k$ that end with the $i$-th song.\n# Let's denote the number of such playlists as $dp[i][k]$.\n# We can calculate $dp[i][k]$ using the following formula:\n# $dp[i][k] = \\sum_{j=1}^{i-1} dp[j][k-1]$ if $g_i \\ne g_j$\n# $dp[i][k] = 0$ otherwise\n# The answer is the sum of all $dp[i][k]$ for $i = 1, 2, \\dots, n$ and $k = T$.\n\n# Solution 3\n\n# This solution is based on the idea of dynamic programming.\n# Let's consider the problem of finding the number of playlists of length $k$ that end with the $i$-th song.\n# Let's denote the number of such playlists as $dp[i][k]$.\n# We can calculate $dp[i][k]$ using the following formula:\n# $dp[i][k] = \\sum_{j=1}^{i-1} dp[j][k-1]$ if $g_i \\ne g_j$\n# $dp[i][k] = 0$ otherwise\n# The answer is the sum of all $dp[i][k]$ for $i = 1, 2, \\dots, n$ and $k = T$.\n\n# Solution 4\n\n# This solution is based on the idea of dynamic programming.\n# Let's consider the problem of finding the number of playlists of length $k$ that end with the $i$-th song.\n# Let's denote the number of such playlists as $dp[i][k]$.\n# We can calculate $dp[i][k]$ using the following formula:\n# $dp[i][k] = \\sum_{j=1}^{i-1} dp[j][k-1]$ if $g_i \\ne g_j$\n# $dp[i][k] = 0$ otherwise\n# The answer is the sum of all $dp[i][k]$ for $i = 1, 2, \\dots, n$ and $k = T$.\n\n# Solution 5\n\n# This solution is based on the idea of dynamic programming.\n# Let's consider the problem of finding the number of playlists of length $k$ that end with the $i$-th song.\n# Let's denote the number of such playlists as $dp[i][k]$.\n# We can calculate $dp[i][k]$ using the following formula:\n# $dp[i][k] = \\sum_{j=1}^{i-1} dp[j][k-1]$ if $g_i \\ne g_j$\n# $dp[i][k] = 0$ otherwise\n# The answer is the sum of all $dp[i][k]$ for $i = 1, 2, \\dots, n$ and $k = T$.\n\n# Solution 6\n\n# This solution is based on the idea of dynamic programming.\n# Let's consider the problem of finding the number of playlists of length $k$ that end with the $i$-th song.\n# Let's denote the number of such playlists as $dp[i][k]$.\n# We can calculate $dp[i][k]$ using the following formula:\n# $dp[i][k] = \\sum_{j=1}^{i-1} dp[j][k-1]$ if"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 17.51982307434082,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

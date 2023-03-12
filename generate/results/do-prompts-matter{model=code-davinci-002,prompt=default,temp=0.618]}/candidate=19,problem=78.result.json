@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport itertools\n\ndef solve(T, songs):\n    \"\"\"\n    T: int\n    songs: list of (t, g) where t is duration and g is genre\n    return: number of unique playlists\n    \"\"\"\n    # TODO: implement this\n    res = 0\n    for song in itertools.permutations(songs):\n        if (sum([song[i][0] for i in range(len(song))]) == T) and (len(set([song[i][1] for i in range(len(song))])) == len(song)):\n            res += 1\n    return res\n\ndef main():\n    n, T = map(int, input().split())\n    songs = []\n    for _ in range(n):\n        t, g = map(int, input().split())\n        songs.append((t, g))\n    res = solve(T, songs)\n    print(res)\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 4.436246156692505,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

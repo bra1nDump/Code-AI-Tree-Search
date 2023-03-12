@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# Solution 1: Dynamic Programming\n# Let's denote $f(i, j)$ as the number of ways to make a playlist of length $i$ with the last song being $j$.\n# Then, $f(i, j) = \\sum_{k=1}^{n} f(i-t_k, k)$ if $t_k \\le i$ and $g_k \\neq g_j$.\n# The answer is $\\sum_{k=1}^{n} f(T, k)$.\n# Time complexity: $O(n^2T)$.\n# Space complexity: $O(nT)$.\n\n# Solution 2: Dynamic Programming\n# Let's denote $f(i, j)$ as the number of ways to make a playlist of length $i$ with the last song being $j$.\n# Then, $f(i, j) = \\sum_{k=1}^{n} f(i-t_k, k)$ if $t_k \\le i$ and $g_k \\neq g_j$.\n# The answer is $\\sum_{k=1}^{n} f(T, k)$.\n# Time complexity: $O(n^2T)$.\n# Space complexity: $O(nT)$.\n\n# Solution 3: Dynamic Programming\n# Let's denote $f(i, j)$ as the number of ways to make a playlist of length $i$ with the last song being $j$.\n# Then, $f(i, j) = \\sum_{k=1}^{n} f(i-t_k, k)$ if $t_k \\le i$ and $g_k \\neq g_j$.\n# The answer is $\\sum_{k=1}^{n} f(T, k)$.\n# Time complexity: $O(n^2T)$.\n# Space complexity: $O(nT)$.\n\n# Solution 4: Dynamic Programming\n# Let's denote $f(i, j)$ as the number of ways to make a playlist of length $i$ with the last song being $j$.\n# Then, $f(i, j) = \\sum_{k=1}^{n} f(i-t_k, k)$ if $t_k \\le i$ and $g_k \\neq g_j$.\n# The answer is $\\sum_{k=1}^{n} f(T, k)$.\n# Time complexity: $O(n^2T)$.\n# Space complexity: $O(nT)$."
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 9.277747869491577,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

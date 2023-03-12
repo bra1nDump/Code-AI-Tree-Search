@@ -1,0 +1,1 @@
+{"codes": ["n, pos, l, r = list(map(int, input().split()))\n\ns = 0\n\nc = 0\n\nfor i in range(l, r + 1):\n\tif i not in [pos - 1, pos + 1]:\n\t\ts += 1\n\t\tc = 0\n\nprint(s)\n\n\n\n\n# Made By Mostafa_Khaled\n"], "rewards": [0.0782608695652174], "train rewards": [0.008771929824561403], "time": 4.21091103553772, "sample times": 1}

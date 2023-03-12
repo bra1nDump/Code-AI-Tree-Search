@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "from collections import defaultdict\nfrom math import factorial\n\nmod = 10**9 + 7\n\n# def generate_playlists(songs, t):\n# \tif t == 0:\n# \t\treturn 1\n# \tif len(songs) == 0:\n# \t\treturn 0\n# \tplaylists = 0\n# \tfor i, song in enumerate(songs):\n# \t\tif song[0] <= t:\n# \t\t\tplaylists += generate_playlists(songs[i+1:], t-song[0])\n# \treturn playlists\n\n# def generate_playlists(songs, t):\n# \tif t == 0:\n# \t\treturn 1\n# \tif len(songs) == 0:\n# \t\treturn 0\n# \tplaylists = 0\n# \tfor i, song in enumerate(songs):\n# \t\tif song[0] <= t:\n# \t\t\tplaylists += generate_playlists(songs[i+1:], t-song[0])\n# \treturn playlists\n\ndef playlists(n, t, songs):\n\tif t == 0:\n\t\treturn 1\n\tif n == 0:\n\t\treturn 0\n\tplaylists = 0\n\t# for i, song in enumerate(songs):\n\t# \tif song[0] <= t:\n\t# \t\tplaylists += generate_playlists(songs[i+1:], t-song[0])\n\tfor i in range(n):\n\t\tif songs[i][0] <= t:\n\t\t\tplaylists += playlists(n-1, t-songs[i][0], songs[:i]+songs[i+1:])\n\treturn playlists\n\ndef main():\n\tn, t = map(int, input().split())\n\tsongs = []\n\tfor _ in range(n):\n\t\tt_i, g_i = map(int, input().split())\n\t\tsongs.append([t_i, g_i])\n\tsongs.sort(key=lambda song: song[0])\n\tplaylists = 0\n\tfor i, song in enumerate(songs):\n\t\tif song[0] <= t:\n\t\t\tplaylists += playlists(n-1, t-song[0], songs[:i]+songs[i+1:])\n\tprint(playlists)\n\nif True:\n\tmain()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.05555555555555555
+    ],
+    "time": 10.290326118469238,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

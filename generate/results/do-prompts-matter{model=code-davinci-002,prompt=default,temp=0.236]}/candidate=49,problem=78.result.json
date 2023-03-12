@@ -1,0 +1,75 @@
+{
+    "codes": [
+        "\ndef main():\n    n, T = map(int, input().split())\n    songs = []\n    for _ in range(n):\n        songs.append(list(map(int, input().split())))\n    songs.sort()\n    # print(songs)\n\n    # dp[i][j][k] = number of ways to make a playlist of length j with the last song being song i and the last song's genre being k\n    dp = [[[0 for _ in range(4)] for _ in range(T+1)] for _ in range(n)]\n\n    # base case: first song\n    dp[0][songs[0][0]][songs[0][1]] = 1\n\n    for i in range(1, n):\n        for j in range(1, T+1):\n            for k in range(1, 4):\n                if j >= songs[i][0]:\n                    dp[i][j][k] = dp[i-1][j][k] + dp[i-1][j-songs[i][0]][k]\n                else:\n                    dp[i][j][k] = dp[i-1][j][k]\n\n                if k == songs[i][1]:\n                    dp[i][j][k] -= dp[i-1][j-songs[i][0]][k]\n\n    # print(dp)\n    ans = 0\n    for i in range(1, 4):\n        ans += dp[n-1][T][i]\n    print(ans % 1000000007)\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.43636363636363634
+    ],
+    "train rewards": [
+        0.37037037037037035
+    ],
+    "time": 6.255666017532349,
+    "sample times": 2,
+    "test_rewards": [
+        [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+        ]
+    ],
+    "train_rewards": [
+        []
+    ]
+}

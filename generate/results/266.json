@@ -1,0 +1,1 @@
+{"codes": ["m, s = list(map(int, input().split()))\n\nif m == s:\n\tprint(m, s)\n\treturn\n\na = list(range(0, m + 1, m))\na.reverse()\nfor i in a:\n\tj = i + 1\n\twhile j < len(str(i)) and sum(map(int, str(j))) <= s:\n\t\tj += 1\n\ta[i] = j\n\nprint(a[0], a[-1])\n"], "rewards": [0.0], "train rewards": [0.03125], "time": [3.9065306186676025], "sample times": 1}

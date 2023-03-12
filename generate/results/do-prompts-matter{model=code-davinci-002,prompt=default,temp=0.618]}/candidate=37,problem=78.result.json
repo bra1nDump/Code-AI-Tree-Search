@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nimport math\nimport sys\n\nMAX_N = 15\nMAX_G = 3\nMAX_T = 225\nMAX_P = 1000000007\n\nstate = [[[0 for t in range(MAX_T + 1)] for g in range(MAX_G + 1)] for n in range(MAX_N + 1)]\n\n\ndef solve(n, T, t, g):\n    if state[n][g][T] == 0:\n        if n == 0 or T == 0:\n            state[n][g][T] = 1\n        else:\n            state[n][g][T] = solve(n - 1, T, t, g)\n            if T >= t[n - 1]:\n                state[n][g][T] += solve(n - 1, T - t[n - 1], t, g)\n                if g[n - 1] != g:\n                    state[n][g][T] += solve(n - 1, T - t[n - 1], t, g[n - 1])\n        state[n][g][T] %= MAX_P\n    return state[n][g][T]\n\n\ndef main():\n    reader = (map(int, line.split()) for line in sys.stdin)\n    n, T = next(reader)\n    t = [0] + list(next(reader) for _ in range(n))\n    g = [0] + list(next(reader) for _ in range(n))\n    print(solve(n, T, t, g))\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 7.071734666824341,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

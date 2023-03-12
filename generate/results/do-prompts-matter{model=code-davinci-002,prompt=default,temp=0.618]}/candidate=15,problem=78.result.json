@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nT, N = map(int, input().split())\n\nt = [0] * N\ng = [0] * N\nfor i in range(N):\n  t[i], g[i] = map(int, input().split())\n\ndef f(s):\n    if s >= N:\n        return int(s == T)\n    if memo[s] != -1:\n        return memo[s]\n    res = 0\n    for i in range(N):\n        if used[i] == 0:\n            used[i] = 1\n            res += f(s + t[i]) * int(g[i] != g[s])\n            used[i] = 0\n    memo[s] = res % 1000000007\n    return memo[s]\n\nmemo = [-1] * N\nused = [0] * N\nprint(f(0))"
+    ],
+    "rewards": [
+        0.07272727272727272
+    ],
+    "train rewards": [
+        0.12962962962962962
+    ],
+    "time": 5.152798891067505,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

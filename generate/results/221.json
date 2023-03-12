@@ -1,0 +1,1 @@
+{"codes": ["import sys\nreadline = sys.stdin.readline\n\nN, K = map(int, readline().split())\nS = [0] * N\nfor i in range(N):\n\tS[i] = S[i-1] + K\n\tif i >= K - 1:\n\t\tS[i] -= K\n\nprint('\\n'.join(map(str, S)))\n"], "rewards": [0.0], "train rewards": [0.0], "time": [3.4761948585510254], "sample times": 1}

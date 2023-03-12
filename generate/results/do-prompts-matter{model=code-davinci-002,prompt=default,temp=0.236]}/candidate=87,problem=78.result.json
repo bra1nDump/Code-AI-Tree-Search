@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# Solution 1\n# This solution is not fast enough for the hard version.\n# The hard version requires a dynamic programming solution.\ndef solve(n, T, songs):\n    # Return the number of playlists of length T that can be made from the songs.\n    # songs is a list of tuples (length, genre)\n    # n is the number of songs\n    # T is the total length of the playlist\n    if T == 0:\n        return 1\n    if n == 0:\n        return 0\n    if T < 0:\n        return 0\n    # Either include the first song or don't\n    # If we include the first song, we can't include any songs of the same genre\n    # as the first song.\n    # If we don't include the first song, we can include any song.\n    # We can't include the first song if its length is greater than T.\n    if songs[0][0] <= T:\n        return solve(n, T - songs[0][0], songs[1:]) + solve(n - 1, T, songs[1:])\n    else:\n        return solve(n - 1, T, songs[1:])\n\ndef main():\n    n, T = [int(x) for x in input().split()]\n    songs = []\n    for _ in range(n):\n        t, g = [int(x) for x in input().split()]\n        songs.append((t, g))\n    print(solve(n, T, songs))\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.05454545454545454
+    ],
+    "train rewards": [
+        0.25925925925925924
+    ],
+    "time": 7.272012948989868,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

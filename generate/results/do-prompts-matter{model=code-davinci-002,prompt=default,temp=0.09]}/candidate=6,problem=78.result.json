@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n# Solution\n\n# This solution is based on the idea that the number of ways to create a playlist of length $T$ is equal to the number of ways to create a playlist of length $T-t_i$ plus the number of ways to create a playlist of length $T-t_j$ plus the number of ways to create a playlist of length $T-t_k$ (where $t_i$, $t_j$ and $t_k$ are the durations of the songs of the three different genres).\n\n# This is because the number of ways to create a playlist of length $T$ is equal to the number of ways to create a playlist of length $T-t_i$ plus the number of ways to create a playlist of length $T-t_j$ plus the number of ways to create a playlist of length $T-t_k$ plus the number of ways to create a playlist of length $T-t_i-t_j$ plus the number of ways to create a playlist of length $T-t_i-t_k$ plus the number of ways to create a playlist of length $T-t_j-t_k$ plus the number of ways to create a playlist of length $T-t_i-t_j-t_k$.\n\n# However, the number of ways to create a playlist of length $T-t_i-t_j$ is equal to the number of ways to create a playlist of length $T-t_j-t_i$, the number of ways to create a playlist of length $T-t_i-t_k$ is equal to the number of ways to create a playlist of length $T-t_k-t_i$, and the number of ways to create a playlist of length $T-t_j-t_k$ is equal to the number of ways to create a playlist of length $T-t_k-t_j$.\n\n# Thus, the number of ways to create a playlist of length $T$ is equal to the number of ways to create a playlist of length $T-t_i$ plus the number of ways to create a playlist of length $T-t_j$ plus the number of ways to create a playlist of length $T-t_k$ (where $t_i$, $t_j$ and $t_k$ are the durations of the songs of the three different genres).\n\n# This is because the number of ways to create a playlist of length $T$ is equal to the number of ways to create a playlist of length $T-t_i$ plus the number of ways to create a playlist of length $T-t_j$ plus the number of ways to create a playlist of length $T-t_k$ plus the number of ways to create a playlist of length $T-t_i-t_j$ plus the number of ways to create a playlist of length $T-t_i-t_k$ plus the number of ways to create a playlist of length $T-t_j-t_k$ plus the number of ways to create a playlist of length $T-t_i-t_j-t_k$.\n\n# However, the number of ways to create a playlist of length $T-t_i-t_j$ is equal to the number of ways to create a playlist of length $T-t_j-t_i$, the number of ways to create a playlist of length $T-t_i-t_k$ is equal to the number of ways to create a playlist of length $T-t_k-t_i$, and the number of ways to create a playlist of length $T-t_j-t_k$ is equal to the number of ways to create a playlist of length $T-t_k-t_j$.\n\n# Thus, the number of ways to create a playlist of length $T$ is equal to the number of ways to create a playlist of length $T-t_i$ plus the number of ways to create a playlist of length $T-t_j$ plus the number of ways to create a playlist of length $T-t_k$ (where $t_i$, $t_j$ and $t_k$ are the durations of the songs of the three different genres).\n\n# This is because the number of ways to create a playlist of length $T$ is equal to the number of ways to create a playlist of length $T-t_i$ plus the number of ways to create a playlist of length $T-t_j$ plus the number of ways to create a playlist of length $T-t_k$ plus the number of ways to create a"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 17.54946279525757,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

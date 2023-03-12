@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\na = list(map(int, input().split()))\n\na = sorted(a)\n\ndiff = []\nfor i in range(360):\n\tdiff.append(a[i] - a[i - 1])\n\nprint(min(diff))\n"], "rewards": [0.0], "train rewards": [0.0], "time": [2.476684093475342], "sample times": 1}

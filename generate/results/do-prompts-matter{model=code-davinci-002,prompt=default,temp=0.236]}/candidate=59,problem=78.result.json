@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\nfrom sys import stdin\nfrom collections import defaultdict\n\nMOD = 10**9 + 7\n\ndef main():\n    n, T = map(int, stdin.readline().split())\n    songs = []\n    for _ in range(n):\n        t, g = map(int, stdin.readline().split())\n        songs.append((t, g))\n    songs.sort()\n    dp = defaultdict(int)\n    dp[0] = 1\n    for t, g in songs:\n        for k, v in dp.items():\n            if k + t <= T:\n                dp[k + t] += v\n                if g in dp:\n                    dp[k + t] -= dp[g]\n    print(dp[T] % MOD)\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.05555555555555555
+    ],
+    "time": 4.57016396522522,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

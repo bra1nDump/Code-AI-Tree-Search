@@ -1,0 +1,19 @@
+{
+    "codes": [
+        "\n\ndef get_all_playlists(n, T):\n    \"\"\"\n    @param n: number of songs\n    @param T: total duration\n    @return: number of different sequences of songs, the total duration is exactly T, such that there are no two\n             consecutive songs of the same genre in them and all the songs in the playlists are different\n    \"\"\"\n    mod = int(1e9 + 7)\n\n    # duration and genre for each song\n    durations = [0] * n\n    genres = [0] * n\n\n    # the number of ways to make a playlist of the length i with the last song of genre j\n    # i is the length of the playlist, j is the genre of the last song\n    dp = [[0] * 4 for _ in range(T + 1)]\n\n    # load data\n    for i in range(n):\n        durations[i], genres[i] = map(int, input().split())\n\n    # initialization\n    # base case: T = 1\n    # the number of ways to make a playlist of length 1 with the last song of genre j is the number of songs of genre j\n    for j in range(1, genres[-1] + 1):\n        dp[1][j] = genres.count(j)\n\n    # dp[i][j] = the number of ways to make a playlist of length i with the last song of genre j\n    for i in range(2, T + 1):\n        for j in range(1, genres[-1] + 1):\n            # the number of ways to make a playlist of length i with the last song of genre j is the sum of the number\n            # of ways to make a playlist of length i - t with the last song of genre k, where 1 <= k <= 3, k != j, and t\n            # is the duration of the last song of genre j\n            dp[i][j] = sum(dp[i - durations[-1]][k] for k in range(1, genres[-1] + 1) if k != j)\n\n    # # print dp table\n    # for row in dp:\n    #     print(row)\n\n    return sum(dp[T]) % mod\n\n\ndef main():\n    # read the number of test cases\n    t = int(input())\n\n    for _ in range(t):\n        # read the number of songs and total duration\n        n, T = map(int, input().split())\n\n        # print the number of different sequences of songs, the total duration is exactly T, such that there are no two\n        # consecutive songs of the same genre in them and all the songs in the playlist are different\n        print(get_all_playlists(n, T))\n\n\nif True:\n    main()"
+    ],
+    "rewards": [
+        0.0
+    ],
+    "train rewards": [
+        0.0
+    ],
+    "time": 12.371685028076172,
+    "sample times": 2,
+    "test_rewards": [
+        []
+    ],
+    "train_rewards": [
+        []
+    ]
+}

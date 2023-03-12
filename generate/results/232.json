@@ -1,0 +1,1 @@
+{"codes": ["n, m = map(int, input().split())\nl = list(map(int, input().split()))\nl.sort()\n\np = [(i - 1) // m + 1 for i in l]\n\ndef check(i, j, m):\n\treturn all(x <= j for x in p[i:j])\n\nif check(n - 1, m, m):\n\tprint('YES')\nelse:\n\tprint('NO')\n"], "rewards": [0.8857142857142857], "train rewards": [0.7352941176470589], "time": [3.5731863975524902], "sample times": 1}

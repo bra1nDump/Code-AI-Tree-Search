@@ -1,0 +1,1 @@
+{"codes": ["n = int(input())\ns = input()\n\ncnt = [[0] * (n + 1) for _ in range(26)]\nfor c in s:\n\tcnt[ord(c) - 97][ord(c) - 97] += 1\n\nres = 0\nfor i in range(26):\n\tfor j in range(n):\n\t\tif not cnt[i][j] and j > i:\n\t\t\tres += i * cnt[i][j]\n\t\t\tbreak\n\nprint(res)\n"], "rewards": [0.0], "train rewards": [0.0], "time": [4.051146507263184], "sample times": 1}

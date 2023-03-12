@@ -1,0 +1,1 @@
+{"codes": ["s = input()\nt = input()\nu = []\nif s == t:\n\tfor i in range(len(s)):\n\t\tu.append(s[i])\nelse:\n\ti = 0\n\twhile i < len(s):\n\t\tif i < len(s) - 1 and s[i] == t[i + 1]:\n\t\t\ti += 2\n\t\telse:\n\t\t\tbreak\n\tu.append(s[i])\nprint(''.join(u))\n"], "rewards": [0.0], "train rewards": [0.0], "time": 5.110576629638672, "sample times": 1}
