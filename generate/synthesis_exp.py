@@ -89,9 +89,9 @@ def main():
         raise Exception(f"Unknown dataset {args.dataset}")
 
     for i, prob_instance in zip(problem_indices, problems):
-        code_loc = os.path.join(args.save, f"{args.prefix}{i}.json")
-        info_loc = os.path.join(args.save, f"{args.prefix}info-{i}.json")
-        log_loc = os.path.join(args.save, f"{args.prefix}{i}.log")
+        code_loc = os.path.join(args.save, f"{args.prefix}problem={i}.result.json")
+        info_loc = os.path.join(args.save, f"{args.prefix}problem={i}.info.json")
+        log_loc = os.path.join(args.save, f"{args.prefix}problem={i}.log")
 
         if not args.rerun:
             # if not forcing rerun, check if this experiment has run or failed before
@@ -136,7 +136,8 @@ def main():
                 env=env,
                 model=model,
                 use_seq_cache=not args.no_seq_cache,
-                debug=args.debug
+                debug=args.debug,
+                temperature=args.temperature,
             )
         else:
             dp = APPSHeuristic(
@@ -187,23 +188,45 @@ def main():
             # if time per sample is not available, use the total time
             time_elapsed = time.time() - start
 
-        output_strs = [env.convert_state_to_program(s) for s in states]
+        candidate_programs = [env.convert_state_to_program(s) for s in states]
 
-        train_rewards = [env.get_reward(s, mode='train') for s in states]
-        test_rewards = [env.get_reward(s, mode='test') for s in states]
+        train_rewards = [env.get_reward(s, mode='train', extra_info=True) for s in states]
+        test_rewards = [env.get_reward(s, mode='test', extra_info=True) for s in states]
 
-        best_idx = np.argmax(train_rewards)
+        first = lambda x: x[0]
+        second = lambda x: x[1]
+        pass_rates = list(map(first, test_rewards))
+        train_pass_rates = list(map(first, train_rewards))
+
+        best_idx = np.argmax(train_pass_rates)
 
         print('final program:')
-        print(output_strs[best_idx])
-        print('train reward', train_rewards[best_idx])
-        print('test reward', test_rewards[best_idx])
-        print('time elapsed', time_elapsed[-1] if isinstance(time_elapsed, list) else time_elapsed)
+        print(candidate_programs[best_idx])
+        print('train reward', train_rewards[best_idx][0])
+        print('test reward', test_rewards[best_idx][0])
+        print('time elapsed', time_elapsed[-1] if isinstance(time_elapsed, list) and len(time_elapsed) else time_elapsed)
         print('sample times', info['sample_times'])
+        
 
         with open(code_loc, "w") as f:
-            json.dump({'codes': output_strs, 'rewards': test_rewards, 'train rewards': train_rewards,
-                       'time': time_elapsed, 'sample times': info['sample_times']}, f)
+            json.dump({
+                'codes': candidate_programs,
+                'rewards': pass_rates,
+                'train rewards': train_pass_rates,
+                'time': time_elapsed,
+                'sample times': info['sample_times'],
+                # Steve Jobs and Kirill added information about the individual test case pass rate
+                'test_rewards': list(map(second, test_rewards)),
+                'train_rewards': list(map(second, train_rewards)),
+            }, f, indent=4)
+                       
+        for index, code in enumerate(candidate_programs):
+            if args.alg == "bs":
+                filename = os.path.join(args.save, f"{args.prefix}problem={i}.py")
+            else:
+                filename = os.path.join(args.save, f"{args.prefix}candidate={index},problem={i}.py")
+            with open(filename, "w") as f:
+                f.write(code)
 
 
 if __name__ == '__main__':
@@ -232,6 +255,7 @@ if __name__ == '__main__':
 
     parser.add_argument("--ucb-constant", default=4., type=float)
     parser.add_argument("--ucb-base", default=10., type=float)
+    parser.add_argument("--temperature", default=0, type=float)
 
     """
     mcts: Planning-Guided Transformer Decoding

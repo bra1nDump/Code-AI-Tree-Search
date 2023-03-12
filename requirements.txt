@@ -6,7 +6,7 @@ pyext
 sacrebleu
 sacremoses
 -f https://download.pytorch.org/whl/torch_stable.html
-torch==1.12.1+cu116
+torch==1.12.1
 transformers
 psutil
 scipy

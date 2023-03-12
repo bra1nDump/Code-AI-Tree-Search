@@ -235,11 +235,13 @@ class CodexHeuristic(DefaultPolicyHeuristic):
                  horizon,
                  env,
                  model,
+                 temperature=0,
                  use_seq_cache=False,
                  debug=False):
         super().__init__(k, horizon, env)
 
         self.model = model
+        self.temperature = temperature
         self.use_value = False # not using any value function
         self.debug = debug
 
@@ -256,7 +258,7 @@ class CodexHeuristic(DefaultPolicyHeuristic):
                     if self.debug: print('sequence cache hit')
                     return cached_str
 
-        seq, info = self.model.generate(input_str=state, horizon=self.horizon)
+        seq, info = self.model.generate(input_str=state, horizon=self.horizon, temperature=self.temperature)
 
         if seq is None:
             return state # simply return the prompt and continue?
@@ -276,7 +278,7 @@ class CodexHeuristic(DefaultPolicyHeuristic):
             return seq_tokens
 
     def get_top_k_predict(self, state):
-        seq, info = self.model.generate(input_str=state, horizon=self.horizon, k=self.k)
+        seq, info = self.model.generate(input_str=state, horizon=self.horizon, k=self.k, temperature=self.temperature)
 
         if seq is None:
             return [], [] # return an empty set of candidates?

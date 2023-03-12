@@ -136,9 +136,9 @@ def get_solutions(problem_list, prob_index):
 
 
 def run_test(prob_path: str = None, problem_list: List[str] = None, prob_index: int = None,
-             test: str = None, debug: bool = False, mode:str='test', public_test_cases=None):
+             candidate_program: str = None, debug: bool = False, mode:str='test', public_test_cases=None):
     """
-    if test is not None it'll try to run the code.
+    if candidate_program is not None it'll try to run the code.
     otherwise it'll just return an input and output pair.
     """
     if prob_path is None and problem_list is None:
@@ -165,10 +165,11 @@ def run_test(prob_path: str = None, problem_list: List[str] = None, prob_index: 
 
     # else:
     #    continue
-    if test is None:
+    if candidate_program is None:
         return in_outs
-    elif test is not None:
+    elif candidate_program is not None:
         # Disable functionalities that can make destructive changes to the test.
+        # Note(KarlMarx): This function is not being called
         reliability_guard
 
         results = []
@@ -177,13 +178,13 @@ def run_test(prob_path: str = None, problem_list: List[str] = None, prob_index: 
             print(f"loading test code = {datetime.now().time()}")
 
         if which_type == CODE_TYPE.call_based:
-            sol += test
+            sol += candidate_program
             if debug:  # or True:
                 print(f"sol = {sol}")
             signal.alarm(timeout)
             try:
                 tmp_sol = RuntimeModule.from_string("tmp_sol", "", sol)
-                if "class Solution" not in test:
+                if "class Solution" not in candidate_program:
                     tmp = tmp_sol
                 else:
                     tmp = tmp_sol.Solution()
@@ -196,8 +197,10 @@ def run_test(prob_path: str = None, problem_list: List[str] = None, prob_index: 
             signal.alarm(0)
 
         elif which_type == CODE_TYPE.standard_input:
-            # sol
-            tmp_test = test.split("\n")
+            # Build a python program starting from what the model generated and
+            # bolt on some extra helpers to run in a "sandbox" (aka eval without
+            # any sandboxing!)
+            tmp_test = candidate_program.split("\n")
 
             new_test = []
             for x in tmp_test:
@@ -646,7 +649,7 @@ def main(args):
     elif args.data in ["test", "t"]:
         # test it with sols
         sols = get_solutions(problem_list, prob_index)
-        tmp = run_test(problem_list, prob_index, test=sols[0])
+        tmp = run_test(problem_list, prob_index, candidate_program=sols[0])
 
         print("results = ", tmp)
         print("-2 = compile error, -1 is runtime error, False failed test, True passed test")

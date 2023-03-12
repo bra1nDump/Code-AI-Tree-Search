@@ -2,13 +2,15 @@ import copy
 import json
 import os
 from abc import abstractmethod, ABC
-from collections import OrderedDict
+from collections import OrderedDict, namedtuple
 from types import SimpleNamespace
+from typing import Tuple, Any
 
 from compute_reward import compute_reward
 from transformer_utils.utils import is_codex_model
 from eval.generate_gpt_codes import generate_apps_prompt, get_output_str_from_state_for_apps
 
+Reward = namedtuple('Reward', 'reward which_tests_passed')
 
 class ProgramEnv(ABC):
     """
@@ -53,7 +55,7 @@ class ProgramEnv(ABC):
         return self.state, reward, done, {}
 
     @abstractmethod
-    def get_reward(self, s, mode='train'):
+    def get_reward(self, s, mode='train', extra_info=False):
         """
         This needs to be defined for each dataset
         """
@@ -137,7 +139,7 @@ class APPSProgramEnv(ProgramEnv):
     def get_canonical_state(self):
         raise NotImplementedError()
 
-    def get_reward(self, s, mode='train'):
+    def get_reward(self, s, mode='train', extra_info=False):
         """
         Returns:
             The reward of program in s.
@@ -145,14 +147,14 @@ class APPSProgramEnv(ProgramEnv):
         if s is None:
             return 0
 
-        if tuple(s) in self.cached_reward.keys() and mode == 'train':
+        if tuple(s) in self.cached_reward.keys() and mode == 'train' and extra_info is False:
             # cache rewards for training
             return self.cached_reward[tuple(s)]
 
         output_str = self.convert_state_to_program(s)
-        reward = compute_reward(self.prob_path, output_str, mode=mode, public_test_cases=self.public_test_cases)
+        reward = compute_reward(self.prob_path, output_str, mode=mode, public_test_cases=self.public_test_cases, extra_info=extra_info)
 
-        if mode == 'train':
+        if mode == 'train' and extra_info is False:
             self.cached_reward[tuple(s)] = reward
 
         return reward
@@ -221,7 +223,7 @@ def check(candidate):
 
         super(HumanEvalProgramEnv, self).__init__(terminal_token=terminal_token, horizon=horizon)
 
-    def get_reward(self, s, mode='train'):
+    def get_reward(self, s, mode='train', extra_info=False):
         if self.task == 'gen_test':
             # test case generation does not need rewards
             return 0

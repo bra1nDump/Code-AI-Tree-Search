@@ -1,0 +1,18 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "synthesis debug",
+            "type": "python",
+            "request": "launch",
+            "program": "synthesis_exp.py",
+            "console": "integratedTerminal",
+            "args": ["-i", "78", "-l", "code-davinci-002", "--alg", "mcts", "--rollout", "1", "--prefix", "tree-search-codex2", "--num-beams", "1", "--rerun", "--temperature", "0.5"],
+            "env": { "PYTHONPATH": "${workspaceRoot}"},
+            "cwd": "${workspaceFolder}/generate"
+        },
+    ]
+}

@@ -57,7 +57,7 @@ python synthesis_exp.py -i 4136 --alg bs
 The following runs **PG-TD** using default parameters as in Table 1, performing 16 rollouts in tree search.
 We add the prefix `t-` to the output file name to distinguish it from the beam search result. The result is saved as `results/t-4136.json`.
 ```
-python synthesis_exp.py -i 4136 --alg mcts --rollout 16 --prefix t-
+python synthesis_exp.py -i 4136 --alg mcts --rollout 16 --prefix tree-search-
 ```
 
 The following runs **Sampling + Filtering**, generating 16 samples.

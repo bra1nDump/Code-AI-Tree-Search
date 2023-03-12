@@ -47,6 +47,7 @@ def print_colored_output(char_and_uncertainties):
 
 
 def execute(command, working_dir='./'):
+    raise Exception("trying to execute")
     print(f"Running {command}")
     return subprocess.Popen(command.split(' '), cwd=working_dir)
 
