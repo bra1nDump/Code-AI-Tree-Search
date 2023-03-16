@@ -6,10 +6,90 @@
 - Open review https://openreview.net/forum?id=Lr8cOOtYbfL
 - Rent GPUs https://brev.dev/
 
+# Wednesday 15
+
+## Numpy, take_along_axis
+
+The learing is that take_along_axis reorders the array along the given axis.
+As the indexes it needs the same shaped array as the input array.
+The indexes need to be the same shape as the input array, because each element can be shifted to a new location.
+
+For example
+
+```python
+[[0, 1],
+ [2, 3]]
+
+# To reorder columns we need
+[[1, 0],
+ [1, 0]]
+
+# For this case we don't need the outer dimension so we can use np.newaxis
+[1, 0][np.newaxis, :]
+# produces
+[[1, 0]]
+
+# [,] notation means adding a new axis, its a numpy thing, not python
+```
+
+````
+
+### Log
+
+Found this here https://stackoverflow.com/questions/41471238/how-to-make-heatmap-square-in-seaborn-facetgrid
+
+The dimensions of the graph don't correspond to the dimensions of the data
+Usually the data is flattened out by the dimensionality of the subplots.
+The data also contains another dimension for the FacetGrid, which in our case are temperature (column) and later prompt (row)
+
+The structure is as follows:
+Program 1, Temperature 1; Program 2, Temperature 1; ...; Program 1, Temperature 2; Program 2, Temperature 2; ...
+
+The following arrays are aligned with each other:
+Test cases solved by 1, 1; Test cases solved by 2, 1; ...; Test cases solved by 1, 2; Test cases solved by 2, 2; ...
+Temperature 1; Temperature 1; ...; Temperature 2; Temperature 2; ...
+
+I don't think we need this - we can just ommit the tests that are empty, they are not
+observations. We want "tidy-long form" data https://tinyurl.com/2ktdm9mf
+
 # Try next
+
+- Start writing what we did?
+- Do they have temperature for gpt2? Try running their models with the higher temperature.
+- [ploting] Add if the test case failed with wrong output vs runtime error - different color
+  - [optional] Additionally classify the runtime errors
+
+## Prompt engineering
+
+- Give more examples - see how many it needs to pass all
+  - Give it the ones it failed on, can it pass them now?
+  - Give all examples - easier. Best case.
+- Redo the prompt copletely - change the content, give different examples (generate?)
+
+## Good prefix
+
+- We can play with the temperature once we find a good prefix (rollout) with a high temperature. We want some creativity to stear the model, but we don't want the
+- Shorten the perfect solution and see if it complete it
+  - Shorten by AST node
+  - Splitting by certainty of the string, find equal split points
+
+## Token count
+
+- Fixed
+- AST
+- Uncertanty
+
+## Tools
+
+- Loom - researches are using it to visualize the tree
 
 TOP PRIORITY
 Open the file with the plot in vscode and just keep it open lol
+
+# Plotting
+
+I can't seem to create multi dimensional np array dataframes, hmm
+Maybe just skip the dataframe?
 
 ## Prompt experimentation
 
@@ -86,7 +166,7 @@ Traceback (most recent call last):
   File "/Users/kirilldubovitskiy/projects/Code-AI-Tree-Search/generate/../eval/utils.py", line 103, in hierarchy_pos
     raise TypeError('cannot use hierarchy_pos on a graph that is not a tree')
 TypeError: cannot use hierarchy_pos on a graph that is not a tree
-```
+````
 
 Results are not being written out
 Codex 2 is the most capable model ....??

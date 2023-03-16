@@ -10,9 +10,38 @@
             "request": "launch",
             "program": "synthesis_exp.py",
             "console": "integratedTerminal",
-            "args": ["-i", "78", "-l", "code-davinci-002", "--alg", "mcts", "--rollout", "1", "--prefix", "tree-search-codex2", "--num-beams", "1", "--rerun", "--temperature", "0.5"],
-            "env": { "PYTHONPATH": "${workspaceRoot}"},
+            "args": [
+                "-i",
+                "78",
+                "-l",
+                "code-davinci-002",
+                "--alg",
+                "mcts",
+                "--rollout",
+                "1",
+                "--prefix",
+                "tree-search-codex2",
+                "--num-beams",
+                "1",
+                "--rerun",
+                "--temperature",
+                "0.5"
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceRoot}"
+            },
             "cwd": "${workspaceFolder}/generate"
+        },
+        {
+            "name": "current",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceRoot}"
+            },
+            "cwd": "${workspaceFolder}/eval"
         },
     ]
 }

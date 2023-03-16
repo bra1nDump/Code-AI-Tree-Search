@@ -13,39 +13,37 @@ import matplotlib.pyplot as plt
 buckets = defaultdict(int)
 bucket_by_test_case = defaultdict(int)
 
-# Observation: 
-# The dimensions of the graph don't correspond to the dimensions of the data
-# Usually the data is flattened out by the dimensionality of the subplots.
-# The data also contains another dimension for the FacetGrid, which in our case are temperature (column) and later prompt (row)
+from dataclasses import dataclass
 
+@dataclass
+class Observation:
+    temperature: float
+    # prompt: str
+    programIndex: int
+    
+# Observations need to be sorted - so the indexes of the programs that actually show up 
+# will be different from the index of the original program.
+# TODO: Replace the indexes of programss in the graph by the original indexes to look them up.
+# Two maps:
+# originalProgramIndex -> new, originalTestCaseIndex -> new
+# Sort test cases and programs using numpy.argsort, they will give us the mapping that we 
+# can use to sort and later lookup
 
-# The structure is as follows:
-# Program 1, Temperature 1;  Program 2, Temperature 1;  ...; Program 1, Temperature 2;  Program 2, Temperature 2; ...
+# Can we sort the observations? So the final structure?
 
-# The following arrays are aligned with each other:
-# Test cases solved by 1, 1; Test cases solved by 2, 1; ...; Test cases solved by 1, 2; Test cases solved by 2, 2; ...
-# Temperature 1;             Temperature 1;             ...; Temperature 2;             Temperature 2; ...
+observations: typing.List[Observation] = []
+
+# I don't think we need this - we can just ommit the tests that are empty, they are not 
+# observations. We want "tidy-long form" data https://tinyurl.com/2ktdm9mf
+def pad_lists(input_list, default_value):
+    max_length = max(len(inner_list) for inner_list in input_list)
+    result = [inner_list + [default_value] * (max_length - len(inner_list)) for inner_list in input_list]
+    return result
+
 total_tests_passed_by_program = []
 temperatures_by_program = []
 
-# Found this here https://stackoverflow.com/questions/41471238/how-to-make-heatmap-square-in-seaborn-facetgrid
-# temperatures = 5
-# test_cases = 5
-# programs = 5
-
-# indices = pd.MultiIndex.from_product((range(temperatures), range(test_cases), range(programs)), names=('temperature', 'test case', 'program'))
-# data = pd.DataFrame(np.random.uniform(0, 100, size=len(indices)), index=indices, columns=('value',)).reset_index()
-# print(indices)
-# print(data)
-
-# def draw_heatmap(*args, **kwargs):
-#     data = kwargs.pop('data')
-#     d = data.pivot(index=args[1], columns=args[0], values=args[2])
-#     sns.heatmap(d, **kwargs)
-
-figure, axes = plt.subplots(5, 1)
-# Increase default figure size
-figure.set_size_inches(18.5, 18.5)
+temperature_by_program_by_test_cases = []
 
 for temperature_index, temperature in enumerate(["0.618", "0.236", "0.034", "0.09", "0.013"]):
     files = glob.glob(f"../generate/results/do-prompts-matter{{model=code-davinci-002,prompt=default,temp={temperature}]}}/*.result.json")
@@ -69,46 +67,26 @@ for temperature_index, temperature in enumerate(["0.618", "0.236", "0.034", "0.0
 
             tests_passed_by_program = sum(passing_tests)
             total_tests_passed_by_program.append(tests_passed_by_program)
-            temperatures_by_program.append(temperature)
 
             program_by_test_case.append(passing_tests)
-
-    
+            
     # Normalize the lists (so that they are all the same length), remember compliation erros and runtime erros
     # have lists of length 0 for test cases solved.
-    normalized_program_by_test_case = list(itertools.zip_longest(*program_by_test_case, fillvalue=False))
-    np_normalized_program_by_test_case = np.array(normalized_program_by_test_case)
+    temperature_by_program_by_test_cases.append(pad_lists(program_by_test_case, False))
+    
 
-    # Sort the rows by the number of test cases each program solves.
-    np_normalized_program_by_test_case = np_normalized_program_by_test_case[np.argsort(np.sum(np_normalized_program_by_test_case, axis=1))[::-1]]
+# Make it a numpy array so that we can use numpy functions on it
+temperature_program_tests = np.array(temperature_by_program_by_test_cases)
 
-    # Sort the columns by the number of programs that solve each test case.
-    np_normalized_program_by_test_case = np_normalized_program_by_test_case[:, np.argsort(np.sum(np_normalized_program_by_test_case, axis=0))[::-1]]
+# Sort the test cases by how many programs pass them
+how_many_programs_pass_a_test_across_all_temperatures = np.sum(temperature_program_tests, axis=(0, 1))
 
-    # Filter out the programs (rows) that solve no test cases.
-    # np_normalized_program_by_test_case = np_normalized_program_by_test_case[np.sum(np_normalized_program_by_test_case, axis=1) > 0]
+test_axis_order = np.argsort(how_many_programs_pass_a_test_across_all_temperatures)
+sorted_tests = np.take_along_axis(temperature_program_tests, test_axis_order[np.newaxis, np.newaxis, :], axis=2)
 
-    # Plot the heatmap by appending to the current plot.
+# Sort the programs by how many test cases they pass
 
-    # plt.figure(figsize=(20, 20))
-    axes[temperature_index].set_title(f'Temperature: {temperature}')
-    seaborn.heatmap(np_normalized_program_by_test_case, cmap="YlGnBu", ax=axes[temperature_index])
 
-    # print(np_normalized_program_by_test_case)
-
-    # test_stats_by_program.extend(list(np_normalized_program_by_test_case))
-    # temperatures_by_program_2.extend([temperature] * len(np_normalized_program_by_test_case))
-
-# Plot the heatmap first
-# heatmap_data = np.array(test_stats_by_program)
-# temperatures_for_each_heatmap = np.array(temperatures_by_program_2)
-# print(heatmap_data)
-# print(temperatures_for_each_heatmap)
-# df = pd.DataFrame(dict(heatmap_data=heatmap_data, temperatures_for_each_heatmap=temperatures_for_each_heatmap))
-
-# seaborn.set_theme(style="white", rc={"axes.facecolor": (0, 0, 0, 0)})
-# g = seaborn.FacetGrid(df, col="temperatures_for_each_heatmap", aspect=15, height=0.5, palette="tab20c")
-# g.map(seaborn.heatmap, "heatmap_data", linewidths=0.05, linecolor="white", cbar=False, vmin=0, vmax=1)
 
 # Save all temperatures to a single file, clear the plot
 plt.savefig("special-test-cases.png")
