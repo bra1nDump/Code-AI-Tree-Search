@@ -15,24 +15,6 @@ bucket_by_test_case = defaultdict(int)
 
 from dataclasses import dataclass
 
-@dataclass
-class Observation:
-    temperature: float
-    # prompt: str
-    programIndex: int
-    
-# Observations need to be sorted - so the indexes of the programs that actually show up 
-# will be different from the index of the original program.
-# TODO: Replace the indexes of programss in the graph by the original indexes to look them up.
-# Two maps:
-# originalProgramIndex -> new, originalTestCaseIndex -> new
-# Sort test cases and programs using numpy.argsort, they will give us the mapping that we 
-# can use to sort and later lookup
-
-# Can we sort the observations? So the final structure?
-
-observations: typing.List[Observation] = []
-
 # I don't think we need this - we can just ommit the tests that are empty, they are not 
 # observations. We want "tidy-long form" data https://tinyurl.com/2ktdm9mf
 def pad_lists(input_list, default_value):
@@ -45,7 +27,9 @@ temperatures_by_program = []
 
 temperature_by_program_by_test_cases = []
 
-for temperature_index, temperature in enumerate(["0.618", "0.236", "0.034", "0.09", "0.013"]):
+ALL_TEMPERATURES = ["0.618", "0.236", "0.034", "0.09", "0.013"]
+
+for temperature_index, temperature in enumerate(ALL_TEMPERATURES):
     files = glob.glob(f"../generate/results/do-prompts-matter{{model=code-davinci-002,prompt=default,temp={temperature}]}}/*.result.json")
     width_guess = 0
 
@@ -98,18 +82,52 @@ program_axis_order_descending = program_axis_order[:, ::-1]
 # Advanced indexing from chat gpt 4 https://shareg.pt/iElyy4R
 sorted_tests_and_program = sorted_tests[np.arange(sorted_tests.shape[0])[:, np.newaxis], program_axis_order_descending]
 
+################# To long form tidy data #################
+@dataclass
+class Observation:
+    temperature: float
+    # prompt: str
+    program_index: int
+    test_case_index: int
+    test_succeeded: bool
+    
+# Observations need to be sorted - so the indexes of the programs that actually show up 
+# will be different from the index of the original program.
+# TODO: Replace the indexes of programss in the graph by the original indexes to look them up.
+# Two maps:
+# originalProgramIndex -> new, originalTestCaseIndex -> new
+# Sort test cases and programs using numpy.argsort, they will give us the mapping that we 
+# can use to sort and later lookup
 
+# Can we sort the observations? So the final structure?
+
+observations: typing.List[Observation] = []
+for index, test_passed in np.ndenumerate(sorted_tests_and_program):
+    temperature_index, program_index, test_case_index = index
+    temperature = float(ALL_TEMPERATURES[temperature_index])
+    # prompt = "default"
+    observations.append(Observation(temperature, program_index, test_case_index, test_passed))
+
+# seaborn does not like numpy arrays. But heatmaps want a 2D array. Solution by GPT
+squares = [pd.DataFrame(test_case_completions) for test_case_completions in sorted_tests_and_program]
+df = pd.DataFrame({'temperature': ALL_TEMPERATURES, 'square': squares})
+g = seaborn.FacetGrid(df, col="temperature", col_wrap=1)
+
+squares_lookup = {temperature: test_case_completions for temperature, test_case_completions in zip(ALL_TEMPERATURES, sorted_tests_and_program)}
+
+# Custom heatmap plotting function
+def plot_heatmap(*args, **kwargs):
+    # Use iloc because seaborn passes a dataframe with a single row, but not with a 0 index
+    square = kwargs["data"]["square"].iloc[0]
+    seaborn.heatmap(square)
+    
+g.map_dataframe(plot_heatmap)
 
 # Save all temperatures to a single file, clear the plot
 plt.savefig("special-test-cases.png")
 plt.clf()
 
-total_tests_passed_by_program = np.array(total_tests_passed_by_program)
-g = np.array(temperatures_by_program)
-df = pd.DataFrame(dict(x=total_tests_passed_by_program, g=g))
-pd.DataFrame()
-print(df)
-
+####################### Plot frequence of test cases solved by programs #######################
 
 # https://seaborn.pydata.org/examples/kde_ridgeplot.html
 seaborn.set_theme(style="white", rc={"axes.facecolor": (0, 0, 0, 0)})
@@ -144,16 +162,3 @@ g.set(yticks=[], ylabel="")
 g.despine(bottom=True, left=True)
 
 plt.savefig('temparature-and-total-tests-solved.png')
-
-
-exit(1)
-
-# Load the example flights dataset and convert to long-form
-flights_long = sns.load_dataset("flights")
-flights = flights_long.pivot("month", "year", "passengers")
-
-# Draw a heatmap with the numeric values in each cell
-f, ax = plt.subplots(figsize=(9, 6))
-sns.heatmap(flights, annot=True, fmt="d", linewidths=.5, ax=ax)
-
-plt.show()
