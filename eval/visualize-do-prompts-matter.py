@@ -80,11 +80,23 @@ temperature_program_tests = np.array(temperature_by_program_by_test_cases)
 
 # Sort the test cases by how many programs pass them
 how_many_programs_pass_a_test_across_all_temperatures = np.sum(temperature_program_tests, axis=(0, 1))
-
 test_axis_order = np.argsort(how_many_programs_pass_a_test_across_all_temperatures)
-sorted_tests = np.take_along_axis(temperature_program_tests, test_axis_order[np.newaxis, np.newaxis, :], axis=2)
+test_axis_order_reversed = np.argsort(how_many_programs_pass_a_test_across_all_temperatures)[::-1]
+sorted_tests = np.take_along_axis(temperature_program_tests, test_axis_order_reversed[np.newaxis, np.newaxis, :], axis=2)
 
 # Sort the programs by how many test cases they pass
+how_many_test_cases_does_a_given_program_pass = np.sum(sorted_tests, axis=2)
+program_axis_order = np.argsort(how_many_test_cases_does_a_given_program_pass, axis=1)
+program_axis_order_descending = program_axis_order[:, ::-1]
+
+# Observation:
+# The order array returned could have 2 encodings, which I mixed up:
+# Correct: [0, 40, 3, ...], means that element at index 40 from the original array goes to index 1 in the new array.
+# Wrong: Element at index 1 in the old array goes to index 40 in the new array
+# I suggest experimenting with smaller arrays to verify assumptions.
+
+# Advanced indexing from chat gpt 4 https://shareg.pt/iElyy4R
+sorted_tests_and_program = sorted_tests[np.arange(sorted_tests.shape[0])[:, np.newaxis], program_axis_order_descending]
 
 
 
@@ -95,6 +107,7 @@ plt.clf()
 total_tests_passed_by_program = np.array(total_tests_passed_by_program)
 g = np.array(temperatures_by_program)
 df = pd.DataFrame(dict(x=total_tests_passed_by_program, g=g))
+pd.DataFrame()
 print(df)
 
 

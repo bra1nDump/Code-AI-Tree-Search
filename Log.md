@@ -32,7 +32,26 @@ For example
 # [,] notation means adding a new axis, its a numpy thing, not python
 ```
 
-````
+```python
+>>> a = np.array([[[0, 1], [0, 0]], [[1, 1], [1, 0] ] ])
+array([[[0, 1],
+        [0, 0]],
+
+       [[1, 1],
+        [1, 0]]])
+>>> s = np.take_along_axis(a, np.array([ [1, 0], [1, 0] ])[:, None], axis=1)
+>>> s
+array([[[0, 1]],
+
+       [[1, 1]]])
+>>> s = np.take_along_axis(a, np.array([ [1, 0], [1, 0] ])[None, :], axis=1)
+>>> a
+array([[[0, 1],
+        [0, 0]],
+
+       [[1, 1],
+        [1, 0]]])
+```
 
 ### Log
 
@@ -166,7 +185,7 @@ Traceback (most recent call last):
   File "/Users/kirilldubovitskiy/projects/Code-AI-Tree-Search/generate/../eval/utils.py", line 103, in hierarchy_pos
     raise TypeError('cannot use hierarchy_pos on a graph that is not a tree')
 TypeError: cannot use hierarchy_pos on a graph that is not a tree
-````
+```
 
 Results are not being written out
 Codex 2 is the most capable model ....??
